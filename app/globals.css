@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 173 80% 40%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 262 80% 50%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 173 80% 40%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 173 80% 40%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 262 80% 50%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 173 80% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+/* Transition for dark mode */
+.transition-colors {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 600ms;
+}
+
+/* Floating Navbar Styles */
+@media (max-width: 770px) {
+  body {
+    padding-bottom: 80px; /* Adjust this value based on your bottom navbar height */
+  }
+
+  .navbar-container {
+    flex-direction: column;
+  }
+
+  .navbar-container > div {
+    width: 60%;
+    width: 300px;
+  }
+
+  .navbar-container-bottom > div {
+    width: 60%;
+    width: 300px;
+  }
+}
+
+@media (min-width: 771px) {
+  .navbar-container-bottom > div {
+    transform: translateX(15px);
+  }
+}
+
+/* Hide navbar on landing page */
+.landing-page .navbar-container {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Show navbar when scrolled */
+.navbar-container {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.titolo-1 {
+  letter-spacing: -4px;
+}
+
+.titolo-2 {
+  font-size: 20px;
+}
+
+.sottotitolo {
+  letter-spacing: -0.5px;
+  font-weight: 300;
+}
+
+.start {
+  transform: translateY(80px);
+}
+
+/* Landing page background fade effect */
+/* .landing-bg {
+  opacity: 1;
+}
+
+.landing-page .landing-bg {
+  opacity: 1;
+}
+
+:not(.landing-page) .landing-bg {
+  opacity: 0;
+} */
+
+.flex-\[0_0_50\%\] {
+  flex: 0 0 50%;
+}
+
+@media screen and (max-width: 770px) {
+  .flex-\[0_0_50\%\] {
+    flex: 0 0 100%;
+  }
+}
+
+.contenitore {
+  width: 235px;
+  height: auto;
+}
+
+.piccolo {
+  width: 160px;
+  align-items: center; 
+  height: auto;
+}
