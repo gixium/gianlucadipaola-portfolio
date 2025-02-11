@@ -31,6 +31,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import useEmblaCarousel from "embla-carousel-react"
 import Autoplay from 'embla-carousel-autoplay'
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
+import type React from "react"
 
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
@@ -72,14 +73,6 @@ export default function Portfolio() {
     setIsGridView((prev) => !prev)
   }
 
-  // const navItems = [
-  //   // { name: "About", icon: <User className="h-5 w-5" /> },
-  //   { name: "Education", icon: <GraduationCap className="h-5 w-5" /> },
-  //   { name: "Projects", icon: <Code className="h-5 w-5" /> },
-  //   { name: "Experience", icon: <Briefcase className="h-5 w-5" /> },
-  //   { name: "Certifications", icon: <Award className="h-5 w-5" /> },
-  // ]
-
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault()
     const element = document.getElementById(id)
@@ -109,33 +102,6 @@ export default function Portfolio() {
     onSelect()
     emblaApi.on("select", onSelect)
   }, [emblaApi, onSelect])
-
-  // const projects = [
-  //   {
-  //     title: "Project Title",
-  //     description: "Subtitle (brief description)",
-  //     content: "Long description",
-  //     link: "https://github.com/puparu/smart-home-iot",
-  //     badges: ["React", "Node.js", "IoT", "Raspberry Pi"],
-  //     badgeColor: "blue",
-  //   },
-  //   {
-  //     title: "Project Title",
-  //     description: "Subtitle (brief description)",
-  //     content: "Long description",
-  //     link: "https://github.com/puparu/ai-chess-engine",
-  //     badges: ["Python", "TensorFlow", "Chess", "AI"],
-  //     badgeColor: "pink",
-  //   },
-  //   {
-  //     title: "Project Title",
-  //     description: "Subtitle (brief description)",
-  //     content: "Long description",
-  //     link: "https://github.com/puparu/project3",
-  //     badges: ["Badge1", "Badge2", "Badge3"],
-  //     badgeColor: "red",
-  //   },
-  // ]
 
   return (
     <div
@@ -187,8 +153,8 @@ export default function Portfolio() {
                   </li>
                   <li>
                     <a
-                      href="@/public/gianluca_di_paola_cv.pdf"
-                      download
+                      href="/app/public/gianluca_di_paola_cv.pdf"
+                      download="gianluca_di_paola_cv.pdf"
                       className="text-gray-600 hover:text-teal-500 dark:text-gray-400 dark:hover:text-teal-400 transition-colors p-2 rounded-full block"
                     >
                       <span className="sr-only">Download CV</span>
@@ -264,11 +230,6 @@ export default function Portfolio() {
                   </a>
               </div>
             </div>
-            {/* <Button asChild className="bg-teal-600 hover:bg-teal-700 text-white">
-              <a href="#education" onClick={(e) => handleSmoothScroll(e, "start")}>
-                Explore My Work
-              </a>
-            </Button> */}
           </div>
         </motion.div>
       </section>
@@ -297,22 +258,6 @@ export default function Portfolio() {
                 <item.icon className="mr-4 !min-w-6 !min-h-6" />
                 <span>{item.text}</span>
               </div>
-            //   <motion.div key={index} whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-            //     <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
-            //       {/* <CardHeader>
-            //         <CardTitle className="text-gray-800 dark:text-gray-200 titolo-2">
-            //           {item.icon}
-            //         </CardTitle>
-            //         <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
-            //           {education.description}
-            //         </CardDescription>
-            //       </CardHeader> */}
-            //       <CardContent className="text-gray-700 dark:text-gray-300 flex items-center justify-normal pt-6">
-            //         <item.icon className="mr-4 !w-6 !h-6" />
-            //         <span>{item.text}</span>
-            //       </CardContent>
-            //     </Card>
-            //   </motion.div>
             ))}
           </div>
         </motion.section>
@@ -353,333 +298,6 @@ export default function Portfolio() {
             ))}
           </div>
         </motion.section>
-          {/* <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-            <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
-              <CardHeader>
-                <CardTitle className="text-gray-800 dark:text-gray-200 titolo-2">
-                  Bachelor of Science in Computer Science
-                </CardTitle>
-                <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
-                  University of Technology
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-gray-700 dark:text-gray-300">
-                <p>Expected Graduation: May 2025</p>
-                <p>GPA: 3.8/4.0</p>
-                <p>Relevant Coursework: Data Structures, Algorithms, Web Development, Database Systems</p>
-              </CardContent>
-            </Card>
-          </motion.div> */}
-
-        {/* Projects Section */}
-        {/* <motion.section
-          id="projects"
-          className="scroll-mt-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-bold mb-8 flex items-center text-gray-800 dark:text-gray-200">
-            <Code className="mr-2" />
-            Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-              <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
-                <CardHeader>
-                  <CardTitle className="titolo-2">
-                    <a
-                      href="https://github.com/gixium/smart-home-iot"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-800 dark:text-gray-200 hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
-                    >
-                      Smart Home IoT System
-                    </a>
-                  </CardTitle>
-                  <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
-                    A full-stack IoT project for home automation
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="text-gray-700 dark:text-gray-300">
-                  <p className="mb-4">
-                    Developed a system to control and monitor home devices using Raspberry Pi, Node.js, and React.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge
-                      variant="secondary"
-                      className="bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200"
-                    >
-                      React
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200"
-                    >
-                      Node.js
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200"
-                    >
-                      IoT
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200"
-                    >
-                      Raspberry Pi
-                    </Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-              <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
-                <CardHeader>
-                  <CardTitle className="titolo-2">
-                    <a
-                      href="https://github.com/gixium/ai-chess-engine"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-800 dark:text-gray-200 hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
-                    >
-                      AI-Powered Chess Engine
-                    </a>
-                  </CardTitle>
-                  <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
-                    A machine learning model for chess move prediction
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="text-gray-700 dark:text-gray-300">
-                  <p className="mb-4">
-                    Implemented a chess engine using deep learning techniques to predict optimal moves.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge
-                      variant="secondary"
-                      className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                    >
-                      Python
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                    >
-                      TensorFlow
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                    >
-                      Chess
-                    </Badge>
-                    <Badge
-                      variant="secondary"
-                      className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                    >
-                      AI
-                    </Badge>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-        </motion.section> */}
-
-        {/* <motion.section
-          id="projects"
-          className="scroll-mt-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-bold mb-8 flex items-center text-gray-800 dark:text-gray-200">
-            <Code className="mr-2" />
-            Projects
-          </h2>
-          <div className="relative px-12">
-            <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
-              <div className="flex">
-                <div className="flex-[0_0_50%] min-w-0 pl-4">
-                <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-                  <Card className="bg-white dark:bg-gray-800 shadow-md h-full transition-colors">
-                    <CardHeader>
-                      <CardTitle>
-                        <a
-                          href="https://github.com/puparu/smart-home-iot"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-800 dark:text-gray-200 hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
-                        >
-                          1- Smart Home IoT System
-                        </a>
-                      </CardTitle>
-                      <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
-                        A full-stack IoT project for home automation
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="text-gray-700 dark:text-gray-300">
-                      <p className="mb-4">
-                        Developed a system to control and monitor home devices using Raspberry Pi, Node.js, and React.
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        <Badge
-                          variant="secondary"
-                          className="bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200"
-                        >
-                          React
-                        </Badge>
-                        <Badge
-                          variant="secondary"
-                          className="bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200"
-                        >
-                          Node.js
-                        </Badge>
-                        <Badge
-                          variant="secondary"
-                          className="bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200"
-                        >
-                          IoT
-                        </Badge>
-                        <Badge
-                          variant="secondary"
-                          className="bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200"
-                        >
-                          Raspberry Pi
-                        </Badge>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-                </div>
-                <div className="flex-[0_0_50%] min-w-0 pl-4">
-                <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-                  <Card className="bg-white dark:bg-gray-800 shadow-md h-full transition-colors">
-                    <CardHeader>
-                      <CardTitle>
-                        <a
-                          href="https://github.com/puparu/ai-chess-engine"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-800 dark:text-gray-200 hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
-                        >
-                          2-AI-Powered Chess Engine
-                        </a>
-                      </CardTitle>
-                      <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
-                        A machine learning model for chess move prediction
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="text-gray-700 dark:text-gray-300">
-                      <p className="mb-4">
-                        Implemented a chess engine using deep learning techniques to predict optimal moves.
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        <Badge
-                          variant="secondary"
-                          className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                        >
-                          Python
-                        </Badge>
-                        <Badge
-                          variant="secondary"
-                          className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                        >
-                          TensorFlow
-                        </Badge>
-                        <Badge
-                          variant="secondary"
-                          className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                        >
-                          Chess
-                        </Badge>
-                        <Badge
-                          variant="secondary"
-                          className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                        >
-                          AI
-                        </Badge>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-                </div>
-                <div className="flex-[0_0_50%] min-w-0 pl-4">
-                <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-                  <Card className="bg-white dark:bg-gray-800 shadow-md h-full transition-colors">
-                    <CardHeader>
-                      <CardTitle>
-                        <a
-                          href="https://github.com/puparu/ai-chess-engine"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-gray-800 dark:text-gray-200 hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
-                        >
-                          3-AI-Powered Chess Engine
-                        </a>
-                      </CardTitle>
-                      <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
-                        A machine learning model for chess move prediction
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="text-gray-700 dark:text-gray-300">
-                      <p className="mb-4">
-                        Implemented a chess engine using deep learning techniques to predict optimal moves.
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        <Badge
-                          variant="secondary"
-                          className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                        >
-                          Python
-                        </Badge>
-                        <Badge
-                          variant="secondary"
-                          className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                        >
-                          TensorFlow
-                        </Badge>
-                        <Badge
-                          variant="secondary"
-                          className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                        >
-                          Chess
-                        </Badge>
-                        <Badge
-                          variant="secondary"
-                          className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                        >
-                          AI
-                        </Badge>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-                </div>
-              </div>
-              <div> </div>
-            </div>
-            <Button
-              onClick={scrollPrev}
-              disabled={!prevBtnEnabled}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white/90 dark:bg-gray-800/70 dark:hover:bg-gray-800/90 backdrop-blur-md border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 z-10 rounded-full"
-              size="icon"
-            >
-              <ChevronLeft className="h-6 w-6" />
-            </Button>
-            <Button
-              onClick={scrollNext}
-              disabled={!nextBtnEnabled}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/70 hover:bg-white/90 dark:bg-gray-800/70 dark:hover:bg-gray-800/90 backdrop-blur-md border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 z-10 rounded-full"
-              size="icon"
-            >
-              <ChevronRight className="h-6 w-6" />
-            </Button>
-          </div>
-        </motion.section> */}
 
         {/* Projects Section */}
         <motion.section
@@ -840,42 +458,6 @@ export default function Portfolio() {
           </AnimatePresence>
         </motion.section>
 
-
-        {/* Experience Section */}
-        {/* <motion.section
-          id="experience"
-          className="scroll-mt-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-bold mb-8 flex items-center text-gray-800 dark:text-gray-200">
-            <Briefcase className="mr-2" />
-            Experience
-          </h2>
-          <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-            <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
-              <CardHeader>
-                <CardTitle className="text-gray-800 dark:text-gray-200 titolo-2">Software Engineering Intern</CardTitle>
-                <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
-                  TechCorp Inc. - Summer 2024
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-gray-700 dark:text-gray-300">
-                <ul className="list-disc list-inside space-y-2">
-                  <li>Developed and maintained features for a high-traffic e-commerce platform</li>
-                  <li>
-                    Collaborated with senior developers to optimize database queries, improving site performance by 30%
-                  </li>
-                  <li>Participated in code reviews and agile development processes</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-        </motion.section> */}
-
         {/* Experience Section */}
         <motion.section
           id="experience"
@@ -911,52 +493,6 @@ export default function Portfolio() {
             ))}
           </div>
         </motion.section>
-
-
-        {/* Certifications Section */}
-        {/* <motion.section
-          id="certifications"
-          className="scroll-mt-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-3xl font-bold mb-8 flex items-center text-gray-800 dark:text-gray-200">
-            <Award className="mr-2" />
-            Certifications
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-              <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
-                <CardHeader>
-                  <CardTitle className="text-gray-800 dark:text-gray-200 titolo-2">
-                    AWS Certified Developer - Associate
-                  </CardTitle>
-                  <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
-                    Amazon Web Services
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="text-gray-700 dark:text-gray-300">
-                  <p>Issued: January 2024</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-              <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
-                <CardHeader>
-                  <CardTitle className="text-gray-800 dark:text-gray-200 titolo-2">
-                    Google Cloud Professional Data Engineer
-                  </CardTitle>
-                  <CardDescription className="uppercase text-gray-600 dark:text-gray-400">Google Cloud</CardDescription>
-                </CardHeader>
-                <CardContent className="text-gray-700 dark:text-gray-300">
-                  <p>Issued: August 2023</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-        </motion.section> */}
 
         {/* Certifications Section */}
         <motion.section
