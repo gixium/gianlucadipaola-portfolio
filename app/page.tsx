@@ -276,7 +276,7 @@ export default function Portfolio() {
             <GraduationCap className="mr-2" />
             Education
           </h2>
-          <div className="grid grid-rows-1 md:grid-rows-2 gap-6">
+          <div className="grid grid-rows-1 md:grid-rows-1 gap-6">
             {education.map((education, index) => (
               <motion.div key={index} whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
                 <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
@@ -289,9 +289,14 @@ export default function Portfolio() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="text-gray-700 dark:text-gray-300">
-                    {education.contents.map((value, index) => 
+                    <ul className="list-disc list-inside space-y-2">
+                      {education.contents.map((value, index) => (
+                        <li key={index}>{value}</li>
+                      ))}
+                    </ul>
+                    {/* {education.contents.map((value, index) => 
                       <p key={index} className="{index}==5?font-bold">{value}</p>
-                    )}
+                    )} */}
                   </CardContent>
                 </Card>
               </motion.div>
@@ -366,6 +371,7 @@ export default function Portfolio() {
                                         ${project.badgeColor === "blue" ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200" : ""}
                                         ${project.badgeColor === "red" ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200" : ""}
                                         ${project.badgeColor === "pink" ? "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200" : ""}
+                                        ${project.badgeColor === "yellow" ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200" : ""}
                                 `}
                               >
                                 {badge}
@@ -422,6 +428,7 @@ export default function Portfolio() {
                                         ${project.badgeColor === "blue" ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200" : ""}
                                         ${project.badgeColor === "red" ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200" : ""}
                                         ${project.badgeColor === "pink" ? "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200" : ""}
+                                        ${project.badgeColor === "yellow" ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200" : ""}
                                       `}
                                     >
                                       {badge}
@@ -471,7 +478,7 @@ export default function Portfolio() {
             <Briefcase className="mr-2" />
             Experience
           </h2>
-          <div className="grid grid-rows-1 md:grid-rows-2 gap-6">
+          <div className="grid grid-rows-1 md:grid-rows-1 gap-6">
             {experiences.map((experience, index) => (
               <motion.div key={index} whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
                 <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
@@ -534,7 +541,7 @@ export default function Portfolio() {
       <footer className="bg-zinc-0 dark:bg-gray-800 py-4 text-center text-sm text-gray-400 dark:text-gray-600 transition-colors">
         {/* <p>&copy; 2025 gixium. All rights reserved.</p> */}
           <p>Engineered with ❤ by Gianluca</p>
-          <p className="px-4 py-2">Technology stack: <br /> Astro, Tailwind CSS, Shadcn, Lucide-React, Framer-Motion</p>
+          <p className="px-4 py-2">Technology stack: <br /> React, Next.js, Tailwind CSS, Shadcn/UI, Lucide-React, Framer-Motion</p>
       </footer>
     </div>
   )
