@@ -153,7 +153,7 @@ export default function Portfolio() {
                   </li>
                   <li>
                     <a
-                      href="/app/public/gianluca_di_paola_cv.pdf"
+                      href="./gianluca_di_paola_cv.pdf"
                       download="gianluca_di_paola_cv.pdf"
                       className="text-gray-600 hover:text-teal-500 dark:text-gray-400 dark:hover:text-teal-400 transition-colors p-2 rounded-full block"
                     >
@@ -371,7 +371,7 @@ export default function Portfolio() {
                                         ${project.badgeColor === "blue" ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200" : ""}
                                         ${project.badgeColor === "red" ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200" : ""}
                                         ${project.badgeColor === "pink" ? "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200" : ""}
-                                        ${project.badgeColor === "yellow" ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200" : ""}
+                                        ${project.badgeColor === "yellow" ? "bg-yellow-200 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200" : ""}
                                 `}
                               >
                                 {badge}
@@ -428,7 +428,7 @@ export default function Portfolio() {
                                         ${project.badgeColor === "blue" ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200" : ""}
                                         ${project.badgeColor === "red" ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200" : ""}
                                         ${project.badgeColor === "pink" ? "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200" : ""}
-                                        ${project.badgeColor === "yellow" ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200" : ""}
+                                        ${project.badgeColor === "yellow" ? "bg-yellow-200 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200" : ""}
                                       `}
                                     >
                                       {badge}
