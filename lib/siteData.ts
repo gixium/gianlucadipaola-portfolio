@@ -50,14 +50,6 @@ export const education = [
 export const projects = [
     // colori disponibili: teal, purple, blue, red, pink, yellow
     {
-      title: "VentureLabs Flâneur",
-      description: "Case study and Prototype design",
-      content: "Team project on the topics of Human-Computer Interaction. After the research phase and case study we followed the User Centered Design paradigm, developing the final prototype. Earned a final score of 29/30.",
-      link: "https://github.com/gixium/VentureLabs",
-      badges: ["Figma", "UCD", "UX", "HTML", "CSS", "PowerPoint"],
-      badgeColor: "blue",
-    },
-    {
       title: "Codex Naturalis",
       description: "Java Distributed Programming",
       content: "Team project: developed the digital version of a physical board game. We implemented it using Java Distributed Prgramming; we provided the game with advanced funcionalities, such as the live chat, the game preservation in case of network problems, et al. Our work earned us a final grade of 30/30 cum Laude.",
@@ -80,6 +72,14 @@ export const projects = [
       link: "https://github.com/gixium/ProgettoRetiLogiche2024/",
       badges: ["FPGA", "Vivado", "Hardware design", "Git"],
       badgeColor: "pink",
+    },
+    {
+      title: "VentureLabs Flâneur",
+      description: "Case study and Prototype design",
+      content: "Team project on the topics of Human-Computer Interaction. After the research phase and case study we followed the User Centered Design paradigm, developing the final prototype. Earned a final score of 29/30.",
+      link: "https://github.com/gixium/VentureLabs",
+      badges: ["Figma", "UCD", "UX", "HTML", "CSS", "PowerPoint"],
+      badgeColor: "blue",
     },
     {
       title: "gianlucadipaola.com",
