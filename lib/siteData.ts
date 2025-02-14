@@ -84,7 +84,7 @@ export const projects = [
     {
       title: "gianlucadipaola.com",
       description: "This website!",
-      content: "I developed a personal porfolio using React, NextJS, Tailwind CSS, Shadcn/UI. The structure of the website is designed to minimise maintenance; since it imports its data from a standalone file, there is no need to constantly review the code. I put a particular focus on responsive design, performance and eccessibility.",
+      content: "I developed a personal porfolio using React, NextJS, Tailwind CSS, Shadcn/UI. The structure of the website is designed to minimise maintenance; since it imports its data from a standalone file, there is no need to constantly review the code. I put a particular focus on responsive design, performance and accessibility.",
       link: "https://github.com/gixium/gianlucadipaola-portfolio/",
       badges: ["React", "NextJS", "Tailwind CSS", "Shadcn/UI", "Lucide-React", "Framer-Motion"],
       badgeColor: "teal",
@@ -134,9 +134,9 @@ export const certifications = [
         description: "CAMBRIDGE ENGLISH",
         content: "Upper Intermediate English",
     },
-    {
-        title: "B1 CEFR English (Preliminary)",
-        description: "CAMBRIDGE ENGLISH",
-        content: "Intermediate English",
-    },
+    // {
+    //     title: "B1 CEFR English (Preliminary)",
+    //     description: "CAMBRIDGE ENGLISH",
+    //     content: "Intermediate English",
+    // },
 ]

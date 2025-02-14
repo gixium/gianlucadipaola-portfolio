@@ -18,6 +18,7 @@ import {
   FileDown as Download,
   ChevronLeft,
   ChevronRight,
+  ChevronsDown,
   X, 
   // Star,
   // ChevronDown,
@@ -32,6 +33,14 @@ import useEmblaCarousel from "embla-carousel-react"
 import Autoplay from 'embla-carousel-autoplay'
 import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
 import type React from "react"
+import { cn } from "@/lib/utils"
+import { Pacifico } from "next/font/google"
+
+const titleFont = Pacifico({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-pacifico",
+})
 
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
@@ -215,22 +224,28 @@ export default function Portfolio() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 text-gray-900 dark:text-gray-100 titolo-1">Gianluca Di Paola</h1>
-          <p className="text-xl md:text-2xl mb-8 uppercase tracking-wide text-gray-700 dark:text-gray-300 sottotitolo">
-            Software Engineering Student
+          <h1 className={cn("text-5xl md:text-7xl font-bold mb-4 text-gray-900 dark:text-gray-100 titolo-1", titleFont.className)}>
+            Gianluca Di Paola
+          </h1>
+          <p className="text-xl md:text-1xl pt-2 mb-8 tracking-wide text-gray-600 dark:text-gray-300 sottotitolo">
+            Computer Engineering Student
           </p>
-          <div className="flex justify-center space-x-4">
-            <div className="contenitore mx-auto px-4">
-              <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-full shadow-lg p-2 mb-4 md:mb-0 transition-colors hover:bg-violet-100 dark:hover:bg-purple-900">
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500 to-purple-600 opacity-5 dark:opacity-30 bg-f rounded-full"></div>
-                  <a href="#education" onClick={(e) => handleSmoothScroll(e, "start")}>
-                    <strong className="uppercase font-medium">
-                      Explore My Work
-                    </strong>
-                  </a>
-              </div>
-            </div>
+          
+          <div className="flex justify-center space-x-4 pt-10">
+            <motion.div
+              // whileHover={{ scale: 1.1 }}
+              // whileTap={{ scale: 0.9 }}
+              animate={{ y: [0, 20, 0] }}
+              transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
+              className="inline-block cursor-pointer"
+            >
+              <a href="#education" onClick={(e) => handleSmoothScroll(e, "start")}>
+                <ChevronsDown size={48} className="text-gray-900 dark:text-gray-100"
+                />
+              </a>
+            </motion.div>
           </div>
+          
         </motion.div>
       </section>
 

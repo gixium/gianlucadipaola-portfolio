@@ -159,7 +159,7 @@ html {
 }
 
 .titolo-1 {
-  letter-spacing: -4px;
+  /* letter-spacing: -4px; */
 }
 
 .titolo-2 {
@@ -168,7 +168,7 @@ html {
 
 .sottotitolo {
   letter-spacing: -0.5px;
-  font-weight: 300;
+  font-weight: 500;
 }
 
 .start {
