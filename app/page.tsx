@@ -35,6 +35,7 @@ import { WheelGesturesPlugin } from 'embla-carousel-wheel-gestures'
 import type React from "react"
 import { cn } from "@/lib/utils"
 import { Pacifico } from "next/font/google"
+// import { Leckerli_One } from "next/font/google"
 
 const titleFont = Pacifico({
   subsets: ["latin"],
