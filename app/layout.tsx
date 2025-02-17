@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     title: "Gianluca Di Paola - Ingegnere Informatico | Politecnico di Milano",
     description: "Portfolio professionale: progetti, competenze ed esperienze nel campo dell'ingegneria informatica.",
     url: "https://gianlucadipaola.com",
-    siteName: "Il mio fantastico sito web",
+    siteName: "gianlucadipaola.com",
     images: [
       {
         url: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1420&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         width: 1200,
         height: 630,
-        alt: "Immagine Open Graph",
+        alt: "Preview Image",
       },
     ],
     locale: "it_IT",

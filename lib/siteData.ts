@@ -129,11 +129,11 @@ export const certifications = [
         description: "CAMBRIDGE ENGLISH",
         content: "Advanced English",
     },
-    {
-        title: "B2 CEFR English (First)",
-        description: "CAMBRIDGE ENGLISH",
-        content: "Upper Intermediate English",
-    },
+    // {
+    //     title: "B2 CEFR English (First)",
+    //     description: "CAMBRIDGE ENGLISH",
+    //     content: "Upper Intermediate English",
+    // },
     // {
     //     title: "B1 CEFR English (Preliminary)",
     //     description: "CAMBRIDGE ENGLISH",
