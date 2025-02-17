@@ -554,7 +554,7 @@ export default function Portfolio() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-zinc-0 dark:bg-gray-800 py-4 text-center text-sm text-gray-400 dark:text-gray-600 transition-colors">
+      <footer className="bg-zinc-0 dark:bg-slate-950 py-4 text-center text-sm text-gray-400 dark:text-gray-600 transition-none">
         {/* <p>&copy; 2025 gixium. All rights reserved.</p> */}
           <p>Engineered with ❤ by Gianluca</p>
           <p className="px-4 py-2">Technology stack: <br /> React, Next.js, Tailwind CSS, Shadcn/UI, Lucide-React, Framer-Motion</p>
