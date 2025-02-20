@@ -300,7 +300,7 @@ export default function Portfolio() {
                     <CardTitle className="text-gray-800 dark:text-gray-200 titolo-2">
                       {education.title}
                     </CardTitle>
-                    <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
+                    <CardDescription className="uppercase text-gray-600 dark:text-gray-400 font-semibold titolo-3">
                       {education.description}
                     </CardDescription>
                   </CardHeader>
@@ -359,19 +359,20 @@ export default function Portfolio() {
                     <motion.div key={index} whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
                       <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
                         <CardHeader>
-                          <CardTitle>
-                            <a
-                              href={project.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-gray-800 dark:text-gray-200 hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
-                            >
-                              {project.title}
-                            </a>
-                          </CardTitle>
-                          <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
-                            {project.description}
-                          </CardDescription>
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-gray-800 dark:text-gray-200 hover:text-teal-500 dark:hover:text-teal-400 transition-colors titolo-2"
+                          >
+                            <CardTitle className="flex items-center gap-2">
+                                <Github className="h-6 w-6" />
+                                {project.title}
+                            </CardTitle>
+                            <CardDescription className="uppercase text-gray-600 dark:text-gray-400 font-semibold titolo-3 mt-1.5">
+                              {project.description}
+                            </CardDescription>
+                          </a>
                         </CardHeader>
                         <CardContent className="text-gray-700 dark:text-gray-300">
                           <p className="mb-4">{project.content}</p>
@@ -416,19 +417,20 @@ export default function Portfolio() {
                           <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
                             <Card className="bg-white dark:bg-gray-800 shadow-md h-full transition-colors">
                               <CardHeader>
-                                <CardTitle>
-                                  <a
-                                    href={project.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-gray-800 dark:text-gray-200 hover:text-teal-500 dark:hover:text-teal-400 transition-colors"
-                                  >
-                                    {project.title}
-                                  </a>
-                                </CardTitle>
-                                <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
-                                  {project.description}
-                                </CardDescription>
+                                <a
+                                  href={project.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-gray-800 dark:text-gray-200 hover:text-teal-500 dark:hover:text-teal-400 transition-colors titolo-2"
+                                >
+                                  <CardTitle className="flex items-center gap-2">
+                                    <Github className="h-6 w-6" />
+                                      {project.title}
+                                  </CardTitle>
+                                  <CardDescription className="uppercase text-gray-600 dark:text-gray-400 font-semibold titolo-3 mt-1.5">
+                                    {project.description}
+                                  </CardDescription>
+                                </a>
                               </CardHeader>
                               <CardContent className="text-gray-700 dark:text-gray-300">
                                 <p className="mb-4">{project.content}</p>
@@ -500,7 +502,7 @@ export default function Portfolio() {
                 <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
                   <CardHeader>
                     <CardTitle className="text-gray-800 dark:text-gray-200 titolo-2">{experience.title}</CardTitle>
-                    <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
+                    <CardDescription className="uppercase text-gray-600 dark:text-gray-400 font-semibold titolo-3">
                       {experience.description}
                     </CardDescription>
                   </CardHeader>
@@ -538,7 +540,7 @@ export default function Portfolio() {
                     <CardTitle className="text-gray-800 dark:text-gray-200 titolo-2">
                       {certification.title}
                     </CardTitle>
-                    <CardDescription className="uppercase text-gray-600 dark:text-gray-400">
+                    <CardDescription className="uppercase text-gray-600 dark:text-gray-400 font-semibold titolo-3">
                       {certification.description}
                     </CardDescription>
                   </CardHeader>
