@@ -94,7 +94,7 @@ export const projects = [
       description: "AI Agent - Newelle extension",
       content: "Group project: developed an AI agent based on the GPT model, capable of assisting the user through websites providing complete and reliable information. The user is always shown the specific webpage the piece of information was found on, making it easy to double check and verify AI's answers. Published it as Newelle extension.",
       link: "https://github.com/gixium/AI-WebNavigator",
-      badges: ["Pythredon", "AI", "GPT"],
+      badges: ["Python", "AI", "GPT"],
       badgeColor: "purple",
     },
 ]
