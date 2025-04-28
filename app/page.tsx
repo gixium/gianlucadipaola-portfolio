@@ -1,6 +1,6 @@
 "use client"
 
-import { landing, navIndex, about, education, projects, certifications, experiences } from "@/lib/siteData"
+// import { landing, navIndex, about, education, projects, certifications, experiences } from "@/lib/siteData"
 import { useState, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -36,6 +36,9 @@ import type React from "react"
 import { cn } from "@/lib/utils"
 import { Pacifico } from "next/font/google"
 // import { Leckerli_One } from "next/font/google"
+import { usePreferredLanguage } from "@uidotdev/usehooks";
+import * as enData from "@/lib/siteData"
+import * as itData from "@/lib/siteData-ITA"
 
 const titleFont = Pacifico({
   subsets: ["latin"],
@@ -47,6 +50,8 @@ export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
   const [isLandingPage, setIsLandingPage] = useState(true)
   const [isGridView, setIsGridView] = useState(false)
+  const language = usePreferredLanguage()
+  const data = language === "en" ? enData : itData
 
   useEffect(() => {
     // Check user's color scheme preference
@@ -126,7 +131,7 @@ export default function Portfolio() {
             {/* Glass gradient effect */}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500 to-purple-600 opacity-5 dark:opacity-10 bg-f rounded-full"></div>
               <ul className="flex justify-center md:justify-start space-x-4">
-                {navIndex.map((item) => (
+                {data.navIndex.map((item) => (
                   <li key={item.name}>
                     <a
                       href={`#${item.name.toLowerCase()}`}
@@ -225,7 +230,7 @@ export default function Portfolio() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {landing.map((item, index) => (
+          {data.landing.map((item, index) => (
             <div key={index}>
               <h1 className={cn("text-5xl md:text-7xl font-bold mb-4 text-gray-900 dark:text-gray-100 titolo-1", titleFont.className)}>
                 {item.title}
@@ -273,7 +278,7 @@ export default function Portfolio() {
             About me
           </h2>
           <div className="grid grid-rows-1 md:grid-rows-2 gap-6">
-            {about.map((item, index) => (
+            {data.about.map((item, index) => (
               <div key={index} className="flex items-center justify-normal pl-4 pr-4">
                 <item.icon className="mr-4 !min-w-6 !min-h-6" />
                 <span>{item.text}</span>
@@ -297,7 +302,7 @@ export default function Portfolio() {
             Education
           </h2>
           <div className="grid grid-rows-1 md:grid-rows-1 gap-6">
-            {education.map((education, index) => (
+            {data.education.map((education, index) => (
               <motion.div key={index} whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
                 <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
                   <CardHeader>
@@ -359,7 +364,7 @@ export default function Portfolio() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {projects.map((project, index) => (
+                  {data.projects.map((project, index) => (
                     <motion.div key={index} whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
                       <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors h-full flex flex-col">
                         <CardHeader className="flex-shrink-0">
@@ -416,7 +421,7 @@ export default function Portfolio() {
                 <div className="relative px-12">
                   <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
                     <div className="flex">
-                      {projects.map((project, index) => (
+                      {data.projects.map((project, index) => (
                         <div key={index} className="flex-[0_0_50%] min-w-0 pl-4">
                           <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
                             <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors h-full">
@@ -501,7 +506,7 @@ export default function Portfolio() {
             Experience
           </h2>
           <div className="grid grid-rows-1 md:grid-rows-1 gap-6">
-            {experiences.map((experience, index) => (
+            {data.experiences.map((experience, index) => (
               <motion.div key={index} whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
                 <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
                   <CardHeader>
@@ -537,7 +542,7 @@ export default function Portfolio() {
             Certifications
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {certifications.map((certification, index) => (
+            {data.certifications.map((certification, index) => (
               <motion.div key={index} whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
                 <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
                   <CardHeader>
