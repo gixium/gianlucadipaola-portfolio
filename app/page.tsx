@@ -129,18 +129,18 @@ export default function Portfolio() {
 
 {/* Navbar Container <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500 to-purple-600 opacity-5 dark:opacity-10 bg-f rounded-full"></div>*/}
 <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none animate-fadeIn navbar-container">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-2 sm:px-4 py-4">
           {/* Classic Horizontal Navbar */}
           <div className="pointer-events-auto">
-            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-full shadow-lg p-3 border border-gray-200/50 dark:border-gray-600/50 transition-colors transition-all duration-300">
+            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-full shadow-lg p-3 border border-gray-200/50 dark:border-gray-600/50 transition-colors duration-300">
               <div className="flex items-center justify-between">
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500 to-purple-600 opacity-5 dark:opacity-10 bg-f rounded-full"></div>
                 {/* Logo/Name */}
-                <div className={`${titleFont.className} text-xl text-gray-900 dark:text-gray-100 pl-2`}>Gianluca</div>
+                <div className={`${titleFont.className} text-lg sm:text-xl text-gray-900 dark:text-gray-100 pl-2`}>Gianluca</div>
 
                 {/* Navigation Links */}
                 <nav className="hidden md:block w-auto">
-                  <ul className="flex space-x-8">
+                  <ul className="flex space-x-4 lg:space-x-8">
                     {data.navItems.map((item) => (
                       <li key={item.name}>
                         <a
@@ -148,7 +148,7 @@ export default function Portfolio() {
                           onClick={(e) => handleSmoothScroll(e, item.name.toLowerCase())}
                           className="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors flex items-center gap-2"
                         >
-                          <item.icon className="h-5 w-5" />
+                          <item.icon className="h-5 w-5 hidden lg:inline" />
                           <span>{item.name}</span>
                         </a>
                       </li>
@@ -172,7 +172,7 @@ export default function Portfolio() {
                       onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                       variant="outline"
                       size="sm"
-                      className="flex items-center gap-1 overflow-hidden transition-all transition-colors duration-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full h-8 w-8"
+                      className="flex items-center gap-1 overflow-hidden transition-colors duration-300 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full h-8 w-8"
                     >
                       {/* <span>Sections</span> */}
                       <ChevronRight
@@ -187,7 +187,7 @@ export default function Portfolio() {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -10, scale: 0.95 }}
                       transition={{ duration: 0.2, ease: "easeOut" }}
-                      className="absolute left-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 backdrop-blur-md rounded-lg p-3 shadow-lg z-50 transition-colors mt-4"
+                      className="absolute left-0 top-full w-48 bg-white dark:bg-gray-800 backdrop-blur-md rounded-lg p-3 shadow-lg z-50 transition-colors mt-4"
                       >
                         <ul className="grid grid-cols-1 gap-2">
                           {data.navItems.map((item) => (
@@ -237,13 +237,13 @@ export default function Portfolio() {
           </DialogHeader>
           <div className="grid grid-cols-1 gap-2 py-2">
             <a
-              href="https://github.com/puparu"
+              href="https://github.com/gixium"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-800 dark:text-gray-200"
             >
-              <div className="p-2 rounded-full bg-gray-100 dark:bg-gray-700">
-                <Github className="h-5 w-5" />
+              <div className="p-2 rounded-full bg-gray-100/0 dark:bg-gray-700/0">
+                <Github className="h-6 w-6" />
               </div>
               <div>
                 <div className="font-medium">GitHub</div>
@@ -251,12 +251,12 @@ export default function Portfolio() {
               </div>
             </a>
             <a
-              href="/curriculumeheh.pdf"
+              href="/gianluca_di_paola_cv.pdf"
               download
               className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-800 dark:text-gray-200"
             >
-              <div className="p-2 rounded-full bg-gray-100 dark:bg-gray-700">
-                <Download className="h-5 w-5" />
+              <div className="p-2 rounded-full bg-gray-100/0 dark:bg-gray-700/0">
+                <Download className="h-6 w-6" />
               </div>
               <div>
                 <div className="font-medium">Download CV</div>
@@ -264,25 +264,25 @@ export default function Portfolio() {
               </div>
             </a>
             <a
-              href="mailto:puparu@example.com"
+              href="mailto:ing@gianlucadipaola.com"
               className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-800 dark:text-gray-200"
             >
-              <div className="p-2 rounded-full bg-gray-100 dark:bg-gray-700">
-                <Mail className="h-5 w-5" />
+              <div className="p-2 rounded-full bg-gray-100/0 dark:bg-gray-700/0">
+                <Mail className="h-6 w-6" />
               </div>
               <div>
                 <div className="font-medium">Email</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">puparu@example.com</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">ing@gianlucadipaola.com</div>
               </div>
             </a>
             <a
-              href="https://linkedin.com/in/puparu"
+              href="https://linkedin.com/in/gianlucadipaola"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-800 dark:text-gray-200"
             >
-              <div className="p-2 rounded-full bg-gray-100 dark:bg-gray-700">
-                <Linkedin className="h-5 w-5" />
+              <div className="p-2 rounded-full bg-gray-100/0 dark:bg-gray-700/0">
+                <Linkedin className="h-6 w-6" />
               </div>
               <div>
                 <div className="font-medium">LinkedIn</div>
