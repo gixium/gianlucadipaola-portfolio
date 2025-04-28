@@ -1,6 +1,6 @@
 "use client"
 
-import { usePreferredLanguage } from "@uidotdev/usehooks";
+import { useLanguage } from "@/hooks/use-language"
 import * as enData from "@/lib/siteData"
 import * as itData from "@/lib/siteData-ITA"
 import { useState, useEffect, useCallback } from "react"
@@ -51,7 +51,7 @@ export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
   const [isLandingPage, setIsLandingPage] = useState(true)
   const [isGridView, setIsGridView] = useState(false)
-  const language = usePreferredLanguage()
+  const { language } = useLanguage()
   const data = language === "en" ? enData : itData
   const [contactOpen, setContactOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)

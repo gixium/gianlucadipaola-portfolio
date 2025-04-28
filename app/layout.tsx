@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import type React from "react";
+import { LanguageProvider } from "@/hooks/use-language"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -63,12 +64,13 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="it">
-      <body className={inter.className}>{children}</body>
+    <html lang="it" suppressHydrationWarning>
+      <body className={inter.className}>
+          <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
-  );
+  )
 }
-
