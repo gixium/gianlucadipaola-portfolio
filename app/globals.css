@@ -192,7 +192,7 @@ html {
   opacity: 0;
 } */
 
-/* .flex-\[0_0_50\%\] {
+.flex-\[0_0_50\%\] {
   flex: 0 0 50%;
 }
 
@@ -200,7 +200,7 @@ html {
   .flex-\[0_0_50\%\] {
     flex: 0 0 100%;
   }
-} */
+}
 
 .contenitore {
   width: 235px;
