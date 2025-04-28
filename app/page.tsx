@@ -1,6 +1,8 @@
 "use client"
 
-// import { landing, navIndex, about, education, projects, certifications, experiences } from "@/lib/siteData"
+import { usePreferredLanguage } from "@uidotdev/usehooks";
+import * as enData from "@/lib/siteData"
+import * as itData from "@/lib/siteData-ITA"
 import { useState, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -13,8 +15,8 @@ import {
   Github, 
   Linkedin, 
   Mail, 
-  Sun, 
-  Moon, 
+  // Sun, 
+  // Moon, 
   FileDown as Download,
   ChevronLeft,
   ChevronRight,
@@ -36,9 +38,8 @@ import type React from "react"
 import { cn } from "@/lib/utils"
 import { Pacifico } from "next/font/google"
 // import { Leckerli_One } from "next/font/google"
-import { usePreferredLanguage } from "@uidotdev/usehooks";
-import * as enData from "@/lib/siteData"
-import * as itData from "@/lib/siteData-ITA"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import Btn03 from "@/components/ui/button-magnet"
 
 const titleFont = Pacifico({
   subsets: ["latin"],
@@ -52,6 +53,8 @@ export default function Portfolio() {
   const [isGridView, setIsGridView] = useState(false)
   const language = usePreferredLanguage()
   const data = language === "en" ? enData : itData
+  const [contactOpen, setContactOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     // Check user's color scheme preference
@@ -80,9 +83,9 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-  }
+  // const toggleDarkMode = () => {
+  //   setDarkMode(!darkMode)
+  // }
 
   const toggleView = () => {
     setIsGridView((prev) => !prev)
@@ -122,97 +125,174 @@ export default function Portfolio() {
     <div
       className={`min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300 pt-20 ${isLandingPage ? "landing-page" : ""}`}
     >
-      {/* Navbar Container */}
-      <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none navbar-container">
-        <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-start">
-          {/* Projects Navbar (Top on mobile, Left on desktop) */}
-          <nav className="pointer-events-auto w-full md:w-auto mb-4 md:mb-0">
-            <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-full shadow-lg p-2 transition-colors">
-            {/* Glass gradient effect */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500 to-purple-600 opacity-5 dark:opacity-10 bg-f rounded-full"></div>
-              <ul className="flex justify-center md:justify-start space-x-4">
-                {data.navIndex.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={`#${item.name.toLowerCase()}`}
-                      onClick={(e) => handleSmoothScroll(e, item.name.toLowerCase())}
-                      className="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors p-2 rounded-full block"
-                    >
-                      <span className="sr-only">{item.name}</span>
-                      <item.icon className="h-5 w-5"/>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </nav>
 
-          {/* Social Links Navbar (Bottom on mobile, Right on desktop) */}
-          <nav className="pointer-events-auto w-full md:w-auto fixed bottom-0 left-0 right-0 md:static navbar-container-bottom">
-            <div className="container mx-auto px-4">
-              <div className="bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-full shadow-lg p-2 mb-4 md:mb-0 transition-colors">
-              {/* Glass gradient effect */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500 to-purple-600 opacity-5 dark:opacity-10 bg-f rounded-full"></div>
 
-                <ul className="flex justify-center space-x-4">
-                  <li>
-                    <a
-                      href="https://github.com/gixium"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-teal-500 dark:text-gray-400 dark:hover:text-teal-400 transition-colors p-2 rounded-full block"
-                    >
-                      <span className="sr-only">GitHub</span>
-                      <Github className="h-5 w-5" />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="./gianluca_di_paola_cv.pdf"
-                      download="gianluca_di_paola_cv.pdf"
-                      className="text-gray-600 hover:text-teal-500 dark:text-gray-400 dark:hover:text-teal-400 transition-colors p-2 rounded-full block"
-                    >
-                      <span className="sr-only">Download CV</span>
-                      <Download className="h-5 w-5" />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="mailto:ing@gianlucadipaola.com"
-                      className="text-gray-600 hover:text-teal-500 dark:text-gray-400 dark:hover:text-teal-400 transition-colors p-2 rounded-full block"
-                    >
-                      <span className="sr-only">Email</span>
-                      <Mail className="h-5 w-5" />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://linkedin.com/in/gianlucadipaola"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-teal-500 dark:text-gray-400 dark:hover:text-teal-400 transition-colors p-2 rounded-full block"
-                    >
-                      <span className="sr-only">LinkedIn</span>
-                      <Linkedin className="h-5 w-5" />
-                    </a>
-                  </li>
-                  <li>
+{/* Navbar Container <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500 to-purple-600 opacity-5 dark:opacity-10 bg-f rounded-full"></div>*/}
+<div className="fixed top-0 left-0 right-0 z-50 pointer-events-none animate-fadeIn navbar-container">
+        <div className="container mx-auto px-4 py-4">
+          {/* Classic Horizontal Navbar */}
+          <div className="pointer-events-auto">
+            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-full shadow-lg p-3 border border-gray-200/50 dark:border-gray-600/50 transition-colors transition-all duration-300">
+              <div className="flex items-center justify-between">
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500 to-purple-600 opacity-5 dark:opacity-10 bg-f rounded-full"></div>
+                {/* Logo/Name */}
+                <div className={`${titleFont.className} text-xl text-gray-900 dark:text-gray-100 pl-2`}>Gianluca</div>
+
+                {/* Navigation Links */}
+                <nav className="hidden md:block w-auto">
+                  <ul className="flex space-x-8">
+                    {data.navItems.map((item) => (
+                      <li key={item.name}>
+                        <a
+                          href={`#${item.name.toLowerCase()}`}
+                          onClick={(e) => handleSmoothScroll(e, item.name.toLowerCase())}
+                          className="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors flex items-center gap-2"
+                        >
+                          <item.icon className="h-5 w-5" />
+                          <span>{item.name}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+
+                {/* Contact Button & Theme Toggle */}
+                <div className="flex items-center gap-3">
+                  {/* <Button
+                    onClick={toggleDarkMode}
+                    variant="ghost"
+                    size="icon"
+                    className="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400"
+                  >
+                    {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                  </Button> */}
+
+                  <div className="relative md:hidden">
                     <Button
+                      onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                       variant="outline"
-                      size="icon"
-                      onClick={toggleDarkMode}
-                      className="text-gray-600 hover:text-teal-500 dark:text-gray-400 dark:hover:text-teal-400 transition-colors rounded-full"
+                      size="sm"
+                      className="flex items-center gap-1 overflow-hidden transition-all transition-colors duration-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full h-8 w-8"
                     >
-                      <span className="sr-only">Toggle theme</span>
-                      {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                      {/* <span>Sections</span> */}
+                      <ChevronRight
+                        className={`h-4 w-4 transition-transform duration-300 ${mobileMenuOpen ? "rotate-90" : ""}`}
+                      />
                     </Button>
-                  </li>
-                </ul>
+
+                    <AnimatePresence>
+                    {mobileMenuOpen && (
+                      <motion.div
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="absolute left-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 backdrop-blur-md rounded-lg p-3 shadow-lg z-50 transition-colors mt-4"
+                      >
+                        <ul className="grid grid-cols-1 gap-2">
+                          {data.navItems.map((item) => (
+                            <li key={item.name}>
+                              <a
+                                href={`#${item.name.toLowerCase()}`}
+                                onClick={(e) => {
+                                  handleSmoothScroll(e, item.name.toLowerCase())
+                                  setMobileMenuOpen(false)
+                                }}
+                                className="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
+                              >
+                                <span> <item.icon className="h-5 w-5" /></span>
+                                <span>{item.name}</span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* <Button
+                    onClick={() => setContactOpen(true)}
+                    className="bg-gradient-to-r from-teal-500 to-purple-600 hover:from-teal-600 hover:to-purple-700 text-white"
+                  >
+                    Contact Me
+                  </Button> */}
+
+                  <Btn03 className="font-semibold py-4 mr-2 rounded-full" particleCount={24} attractRadius={60} onClick={() => setContactOpen(true)} />
+                </div>
               </div>
             </div>
-          </nav>
+          </div>
         </div>
       </div>
+
+      {/* Contact Dialog */}
+      <Dialog open={contactOpen} onOpenChange={setContactOpen}>
+        <DialogContent className="bg-white dark:bg-gray-800 border-0 rounded-xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-gray-800 dark:text-gray-200">Contact Me</DialogTitle>
+            <DialogDescription className="text-gray-600 dark:text-gray-400">
+              Connect with me through any of these platforms
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid grid-cols-1 gap-2 py-2">
+            <a
+              href="https://github.com/puparu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-800 dark:text-gray-200"
+            >
+              <div className="p-2 rounded-full bg-gray-100 dark:bg-gray-700">
+                <Github className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="font-medium">GitHub</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">View my projects</div>
+              </div>
+            </a>
+            <a
+              href="/curriculumeheh.pdf"
+              download
+              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-800 dark:text-gray-200"
+            >
+              <div className="p-2 rounded-full bg-gray-100 dark:bg-gray-700">
+                <Download className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="font-medium">Download CV</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">Get my resume</div>
+              </div>
+            </a>
+            <a
+              href="mailto:puparu@example.com"
+              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-800 dark:text-gray-200"
+            >
+              <div className="p-2 rounded-full bg-gray-100 dark:bg-gray-700">
+                <Mail className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="font-medium">Email</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">puparu@example.com</div>
+              </div>
+            </a>
+            <a
+              href="https://linkedin.com/in/puparu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-800 dark:text-gray-200"
+            >
+              <div className="p-2 rounded-full bg-gray-100 dark:bg-gray-700">
+                <Linkedin className="h-5 w-5" />
+              </div>
+              <div>
+                <div className="font-medium">LinkedIn</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">Connect with me</div>
+              </div>
+            </a>
+          </div>
+        </DialogContent>
+      </Dialog>
+
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden -mt-20">
@@ -238,6 +318,7 @@ export default function Portfolio() {
               <p className="text-xl md:text-1xl pt-2 mb-8 tracking-wide text-gray-600 dark:text-gray-300 sottotitolo">
                 {item.subtitle}
               </p>
+              <Btn03 className="font-semibold text-lg p-6 " particleCount={32} attractRadius={60} onClick={() => setContactOpen(true)} />
             </div>
           ))}
           

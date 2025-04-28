@@ -5,7 +5,7 @@ import { GraduationCap, Briefcase, Code, Award,
         } from "lucide-react"
 
 export const landing = [
-    { title: "Gianluca Di Paola", subtitle: "Computer Engineer"},
+    { title: "Gianluca Di Paola", subtitle: "Ingegnere Informatico" },
 ]
 
 export const navItems = [

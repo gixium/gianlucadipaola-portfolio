@@ -119,9 +119,9 @@ html {
 }
 
 /* Floating Navbar Styles */
-@media (max-width: 770px) {
+/* @media (max-width: 770px) {
   body {
-    padding-bottom: 80px; /* Adjust this value based on your bottom navbar height */
+    padding-bottom: 80px; 
   }
 
   .navbar-container {
@@ -143,7 +143,7 @@ html {
   .navbar-container-bottom > div {
     transform: translateX(15px);
   }
-}
+} */
 
 /* Hide navbar on landing page */
 .landing-page .navbar-container {
@@ -192,7 +192,7 @@ html {
   opacity: 0;
 } */
 
-.flex-\[0_0_50\%\] {
+/* .flex-\[0_0_50\%\] {
   flex: 0 0 50%;
 }
 
@@ -200,7 +200,7 @@ html {
   .flex-\[0_0_50\%\] {
     flex: 0 0 100%;
   }
-}
+} */
 
 .contenitore {
   width: 235px;
