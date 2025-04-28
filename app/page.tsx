@@ -1,6 +1,6 @@
 "use client"
 
-import { navIndex, about, education, projects, certifications, experiences } from "@/lib/siteData"
+import { landing, navIndex, about, education, projects, certifications, experiences } from "@/lib/siteData"
 import { useState, useEffect, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -225,12 +225,16 @@ export default function Portfolio() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className={cn("text-5xl md:text-7xl font-bold mb-4 text-gray-900 dark:text-gray-100 titolo-1", titleFont.className)}>
-            Gianluca Di Paola
-          </h1>
-          <p className="text-xl md:text-1xl pt-2 mb-8 tracking-wide text-gray-600 dark:text-gray-300 sottotitolo">
-            Computer Engineering Student
-          </p>
+          {landing.map((item, index) => (
+            <div key={index}>
+              <h1 className={cn("text-5xl md:text-7xl font-bold mb-4 text-gray-900 dark:text-gray-100 titolo-1", titleFont.className)}>
+                {item.title}
+              </h1>
+              <p className="text-xl md:text-1xl pt-2 mb-8 tracking-wide text-gray-600 dark:text-gray-300 sottotitolo">
+                {item.subtitle}
+              </p>
+            </div>
+          ))}
           
           <div className="flex justify-center space-x-4 pt-10">
             <motion.div
@@ -357,8 +361,8 @@ export default function Portfolio() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {projects.map((project, index) => (
                     <motion.div key={index} whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-                      <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors">
-                        <CardHeader>
+                      <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors h-full flex flex-col">
+                        <CardHeader className="flex-shrink-0">
                           <a
                             href={project.link}
                             target="_blank"
@@ -374,9 +378,9 @@ export default function Portfolio() {
                             </CardDescription>
                           </a>
                         </CardHeader>
-                        <CardContent className="text-gray-700 dark:text-gray-300">
+                        <CardContent className="text-gray-700 dark:text-gray-300 flex-grow flex flex-col justify-between">
                           <p className="mb-4">{project.content}</p>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="flex flex-wrap gap-2 mt-auto pt-4">
                             {project.badges.map((badge, badgeIndex) => (
                               <Badge
                                 key={badgeIndex}
@@ -415,7 +419,7 @@ export default function Portfolio() {
                       {projects.map((project, index) => (
                         <div key={index} className="flex-[0_0_50%] min-w-0 pl-4">
                           <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-                            <Card className="bg-white dark:bg-gray-800 shadow-md h-full transition-colors">
+                            <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors h-full">
                               <CardHeader>
                                 <a
                                   href={project.link}

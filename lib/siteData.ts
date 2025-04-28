@@ -4,6 +4,10 @@ import { GraduationCap, Briefcase, Code, Award,
          UserRound,
         } from "lucide-react"
 
+export const landing = [
+    { title: "Gianluca Di Paola", subtitle: "Computer Engineer" },
+]
+
 export const navIndex = [
   { name: "About", icon: UserRound },
   { name: "Education", icon: GraduationCap },
@@ -129,11 +133,11 @@ export const certifications = [
         description: "CAMBRIDGE ENGLISH",
         content: "Advanced English",
     },
-    {
-        title: "B2 CEFR English (First)",
-        description: "CAMBRIDGE ENGLISH",
-        content: "Upper Intermediate English",
-    },
+    // {
+    //     title: "B2 CEFR English (First)",
+    //     description: "CAMBRIDGE ENGLISH",
+    //     content: "Upper Intermediate English",
+    // },
     // {
     //     title: "B1 CEFR English (Preliminary)",
     //     description: "CAMBRIDGE ENGLISH",
