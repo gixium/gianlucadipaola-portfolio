@@ -1,146 +1,146 @@
 import { GraduationCap, Briefcase, Code, Award, 
-        //  Github, Linkedin, Mail, Download 
-         Hand as Hello, LibraryBig as Studies, Lightbulb as Idea, Target as Aim,
-         UserRound,
-        } from "lucide-react"
+    //  Github, Linkedin, Mail, Download 
+     Hand as Hello, LibraryBig as Studies, Lightbulb as Idea, Target as Aim,
+     UserRound,
+    } from "lucide-react"
 
 export const landing = [
-    { title: "Gianluca Di Paola", subtitle: "Ingegnere Informatico" },
+{ title: "Gianluca Di Paola", subtitle: "Ingegnere Informatico - *"},
 ]
 
 export const navItems = [
-  { name: "About", icon: UserRound },
-  { name: "Education", icon: GraduationCap },
-  { name: "Projects", icon: Code },
-  { name: "Experience", icon: Briefcase },
-  { name: "Certifications", icon: Award },
+{ name: "Chi sono", icon: UserRound },
+{ name: "Formazione", icon: GraduationCap },
+{ name: "Progetti", icon: Code },
+{ name: "Esperienze", icon: Briefcase },
+{ name: "Certificazioni", icon: Award },
 ]
 // export const navSocials = [
 //   { name: "GitHub", icon: Github, href: "https://github.com/gixium" },
-//   { name: "Download CV", icon: Download, href: "/gianluca_di_paola_cv.pdf", download: true },
+//   { name: "Scarica CV", icon: Download, href: "/gianluca_di_paola_cv.pdf", download: true },
 //   { name: "Email", icon: Mail, href: "mailto:ing@gianlucadipaola.com" },
 //   { name: "LinkedIn", icon: Linkedin, href: "https://linkedin.com/in/gianlucadipaola" },
 // ]
 
 export const about = [
-    { icon: Hello, 
-        text: "Hi, I'm Gianluca. I'm a student of a Master's Degree in Computer Engineering, here at the Polytechnic University of Milan."},
-    { icon: Studies, 
-        text: "Being very passionate about technology and innovation, I thrive on continuously expanding my knowledge. My bachelor's degree at PoliMi has provided me with strong foundations in engineering, computer science, mathematics and electronics."},
-    { icon: Idea, 
-        text: "Being in contact with passionate professionals has inspired me to dive deeper into Computer Science and Engineering topics, while also keeping myself open to the world of Business and Management. Beyond technology, I am deeply interested in science in general and other curious topics; this is why I always try to stay up-to-date with new innovations and discoveries."},
-    { icon: Aim, 
-        text: "My current focus is directed towards completing my studies in Computer Engineering, ICT Engineering, Business and Innovation. Looking ahead, I aspire to find myself working for a company that best suits my studies."},
+{ icon: Hello, 
+    text: "Ciao, sono Gianluca. Sono un ingegnere e uno studente di Laurea Magistrale in Ingegneria Informatica presso il Politecnico di Milano."},
+{ icon: Studies, 
+    text: "La tecnologia mi appassiona da sempre, soprattutto per le sue diverse applicazioni possibili; propio per questo cerco sempre di espandere le mie conoscenze e di restare aggiornato sul panorama attuale. In tal senso, la laurea triennale al PoliMi mi ha fornito delle solide competenze in ingegneria, informatica, matematica ed elettronica."},
+{ icon: Idea, 
+    text: "Stare a contatto con i migliori professionisti nel proprio campo mi ha ispirato ad approfondire tematiche legate sia all'informatica che all'ingegneria, strizzando l'occhio al mondo del business e del management. Oltre alla tecnologia, sono molto interessato alla scienza in generale e a ciò che trovo curioso, cercando sempre di rimanere aggiornato sulle nuove innovazioni e scoperte."},
+{ icon: Aim, 
+    text: "Attualmente sono concentrato sui miei studi specialistici in Ingegneria Informatica, ICT, Business e Innovazione. Guardando al futuro, aspiro a lavorare in un contesto che valorizzi al meglio il mio percorso di studi."},
 ]
 
 export const education = [
-    {
-        title: "Master of Science Degree in Computer Engineering, ICT, Business and Innovation",
-        description: "Polytechnic University of Milan",
-        contents: ["Currently attending"],
-    },
-    {
-        title: "Bachelor of Science Degree in Engineering Of Computing Systems",
-        description: "Polytechnic University of Milan",
-        contents: ["Relevant Coursework (informatics): Software Engineering, Object-Oriented Programming, Algorithms (fundamental and for bioinformatics), Data Structures, Finite State Machines, Software Defined Networking, Databases and Design, Computer Architecture, Operating Systems, Human-Computer Interaction", "Relevant Coursework (engineering): Calculus I & II, Linear Algebra, Geometry, Physics, Probability & Statistics, General Chemistry, Automation, Logic & Algebra, Information Systems, Business Economics & Organization, Electronics"],
-    },
-    {
-        title: "High School Diploma in Scientific Studies",
-        description: "LSS Benedetto Croce",
-        contents: [],
-    }
+{
+    title: "Laurea Magistrale in Ingegneria Informatica, ICT, Business e Innovazione",
+    description: "Politecnico di Milano",
+    contents: ["Attualmente studente"],
+},
+{
+    title: "Laurea Triennale in Ingegneria Informatica",
+    description: "Politecnico di Milano",
+    contents: ["Corsi rilevanti (informatica): Ingegneria del Software, Programmazione Orientata agli Oggetti, Algoritmi (fondamentali e per la bioinformatica), Strutture Dati, Macchine a Stati Finiti, Software Defined Networking, Database e Progettazione, Architettura dei Calcolatori, Sistemi Operativi, Interazione Uomo-Macchina", "Corsi rilevanti (ingegneria): Analisi Matematica I e II, Algebra Lineare, Geometria, Fisica, Probabilità e Statistica, Chimica Generale, Automazione, Logica e Algebra, Sistemi Informativi, Economia e Organizzazione Aziendale, Elettronica"],
+},
+{
+    title: "Diploma di Maturità Scientifica",
+    description: "LSS Benedetto Croce",
+    contents: [],
+}
 ]
 
 export const projects = [
-    // colori disponibili: teal, purple, blue, red, pink, yellow
-    {
-      title: "Codex Naturalis",
-      description: "Java Distributed Programming",
-      content: "Team project: developed the digital version of a physical board game. We implemented it using Java Distributed Prgramming; we provided the game with advanced funcionalities, such as the live chat, the game preservation in case of network problems, et al. Our work earned us a final grade of 30/30 cum Laude.",
-      link: "https://github.com/grecodavide/IS24-AM08",
-      badges: ["Java", "JavaFX", "Maven", "TCP", "RMI", "MVC", "GUI/TUI", "IntelliJ IDEA"],
-      badgeColor: "yellow",
-    },
-    {
-      title: "Data Highway",
-      description: "Algorithms and Data Structures",
-      content: "Solo project: I developed a C program respectful of the given time and memory complexity limits. Implementing the notions learned in the PoliMi course, I was able to elaborate custom case-specific data structures and algorithms to best fit the specific purposes. My work earned me a final score of 30/30.",
-      link: "https://github.com/gixium",
-      badges: ["C", "GCC", "GDB", "Big-O notation", "Valgrind", "Unix Shell"],
-      badgeColor: "red",
-    },
-    {
-      title: "FPGA Module",
-      description: "Design of electronic component",
-      content: "Team project: developed and designed a fully functional VHDL hardware module, for its seamless integration with a RAM. Earned a score of 28/30.",
-      link: "https://github.com/gixium/ProgettoRetiLogiche2024/",
-      badges: ["FPGA", "Vivado", "Hardware design", "Git"],
-      badgeColor: "pink",
-    },
-    {
-      title: "VentureLabs Flâneur",
-      description: "Case study and Prototype design",
-      content: "Team project on the topics of Human-Computer Interaction. After the research phase and case study we followed the User Centered Design paradigm, developing the final prototype. Earned a final score of 29/30.",
-      link: "https://github.com/gixium/VentureLabs",
-      badges: ["Figma", "UCD", "UX", "HTML", "CSS", "PowerPoint"],
-      badgeColor: "blue",
-    },
-    {
-      title: "gianlucadipaola.com",
-      description: "This website!",
-      content: "I developed a personal porfolio using React, NextJS, Tailwind CSS, Shadcn/UI. The structure of the website is designed to minimise maintenance; since it imports its data from a standalone file, there is no need to constantly review the code. I put a particular focus on responsive design, performance and accessibility.",
-      link: "https://github.com/gixium/gianlucadipaola-portfolio/",
-      badges: ["React", "NextJS", "Tailwind CSS", "Shadcn/UI", "Lucide-React", "Framer-Motion"],
-      badgeColor: "teal",
-    },
-    {
-      title: "AI Web Navigator",
-      description: "AI Agent - Newelle extension",
-      content: "Group project: developed an AI agent based on the GPT model, capable of assisting the user through websites providing complete and reliable information. The user is always shown the specific webpage the piece of information was found on, making it easy to double check and verify AI's answers. Published it as Newelle extension.",
-      link: "https://github.com/gixium/AI-WebNavigator",
-      badges: ["Python", "AI", "GPT"],
-      badgeColor: "purple",
-    },
+// colori disponibili: teal, purple, blue, red, pink, yellow
+{
+  title: "Codex Naturalis",
+  description: "Programmazione Distribuita Java",
+  content: "Progetto di gruppo: sviluppo della versione digitale di un gioco da tavolo fisico, tramite la programmazione distribuita in Java. Ho dotato il gioco di funzionalità avanzate, come la chat dal vivo, la conservazione dello stato di gioco in caso di problemi di rete e altro ancora. Conseguita una valutazione finale di 30/30 con Lode.",
+  link: "https://github.com/grecodavide/IS24-AM08",
+  badges: ["Java", "JavaFX", "Maven", "TCP", "RMI", "MVC", "GUI/TUI", "IntelliJ IDEA"],
+  badgeColor: "yellow",
+},
+{
+  title: "Data Highway",
+  description: "Algoritmi e Strutture Dati",
+  content: "Progetto individuale: ho sviluppato un programma in C rispettando i limiti di complessità temporale e spaziale assegnati. Implementando le nozioni apprese nel corso del PoliMi, sono riuscito a elaborare strutture dati e algoritmi personalizzati specifici per i casi d'uso, al fine di adattarli al meglio agli scopi specifici. Il mio lavoro mi ha fatto ottenere una valutazione finale di 30/30.",
+  link: "https://github.com/gixium",
+  badges: ["C", "GCC", "GDB", "Notazione Big-O", "Valgrind", "Unix Shell"],
+  badgeColor: "red",
+},
+{
+  title: "Modulo FPGA",
+  description: "Progettazione di componenti elettronici",
+  content: "Progetto di gruppo: sviluppo e progettazione di un modulo hardware VHDL completamente funzionante, per la sua perfetta integrazione con una RAM. Ottenuto un punteggio di 28/30.",
+  link: "https://github.com/gixium/ProgettoRetiLogiche2024/",
+  badges: ["FPGA", "Vivado", "Progettazione hardware", "Git"],
+  badgeColor: "pink",
+},
+{
+  title: "VentureLabs Flâneur",
+  description: "Case study e Progettazione prototipo",
+  content: "Progetto di gruppo sui temi dell'Interazione Uomo-Macchina. Dopo la fase di ricerca dal vivo e case study ho seguito il paradigma di User Centered Design, sviluppando il prototipo finale; ho elaborato il prototipo adattandolo alle esigenze emerse con gli utenti target, implementando funzioni studiate ad hoc per un'interazione fluida e senza compromessi. Il progetto ha conseguito una valutazione finale di 29/30.",
+  link: "https://github.com/gixium/VentureLabs",
+  badges: ["Figma", "UCD", "UX", "HTML", "CSS", "PowerPoint"],
+  badgeColor: "blue",
+},
+{
+  title: "gianlucadipaola.com",
+  description: "Questo sito web!",
+  content: "Ho sviluppato un portfolio personale utilizzando React, NextJS, Tailwind CSS e Shadcn/UI. La struttura del sito è progettata per ridurre al minimo la manutenzione; poiché importa i suoi dati da un file separato, non è necessario rivedere costantemente il codice. Ho posto particolare attenzione al design responsive, alle prestazioni e all'accessibilità.",
+  link: "https://github.com/gixium/gianlucadipaola-portfolio/",
+  badges: ["React", "NextJS", "Tailwind CSS", "Shadcn/UI", "Lucide-React", "Framer-Motion"],
+  badgeColor: "teal",
+},
+{
+  title: "AI Web Navigator",
+  description: "Agente AI - Estensione Newelle",
+  content: "Progetto di gruppo: sviluppo di un agente AI basato sul modello GPT, in grado di assistere l'utente attraverso siti web fornendo informazioni complete e affidabili. All'utente viene sempre mostrata la pagina web specifica in cui è stata trovata l'informazione, rendendo facile controllare e verificare le risposte dell'AI. Pubblicato come estensione Newelle.",
+  link: "https://github.com/gixium/AI-WebNavigator",
+  badges: ["Python", "AI", "GPT"],
+  badgeColor: "purple",
+},
 ]
 
 export const experiences = [
-    {
-        title: "AI Agents - Student Tech Clash",
-        description: "Reply, EBEC milano, Best Milano",
-        contents: ["As part of the 2nd placed finalist team of the challenge, we developed an AI Agent capable of assisting the user with complex search tasks. We crafted a comprehensive presentation of our solution and earned a certificate of attendance."],
-    },
-    {
-        title: "TOP: Tutoring Online Program",
-        description: "Harvard University, Bocconi University, Bicocca University, CIAI",
-        contents: ["I provided specialized tutoring to a student with difficulties, tailoring it to the student's needs. Earned recognition through an awarded open-badge for the acquired skills and knowledge."],
-    },
-    {
-        title: "Metaverse - Student Tech Clash",
-        description: "Reply, EBEC milano, Best Milano",
-        contents: ["As part of the finalist team of the challenge, I collaborated on Metaverse exploration event, crafting a comprehensive PowerPoint on its future applications."],
-    },
-    {
-        title: "Water and Data Analysis with Bioindicators",
-        description: "Sicily Region, ICS Maredolce",
-        contents: ["I led my team during the water analysis process using bioindicators, proficiently organizing and manipulating data in Excel while collaborating effectively."],
-    },
+{
+    title: "Agenti AI - Student Tech Clash",
+    description: "Reply, EBEC Milano, Best Milano",
+    contents: ["Come parte del team finalista classificato al 2° posto della sfida, abbiamo sviluppato un Agente AI in grado di assistere l'utente in complesse attività di ricerca. Abbiamo realizzato una presentazione completa della nostra soluzione e ottenuto un attestato di partecipazione."],
+},
+{
+    title: "TOP: Tutoring Online Program",
+    description: "Harvard University, Università Bocconi, Università Bicocca, CIAI",
+    contents: ["Ho fornito tutoraggio specializzato a uno studente con difficoltà, adattando la metodologia di apprendimento dei concetti alle esigenze specifiche dello studente. Ho ricevuto un riconoscimento attraverso un open-badge per le competenze e conoscenze acquisite."],
+},
+{
+    title: "Metaverso - Student Tech Clash",
+    description: "Reply, EBEC Milano, Best Milano",
+    contents: ["Come parte del team finalista della sfida, ho collaborato all'esplorazione del Metaverso, elaborando una presentazione PowerPoint completa sulle sue future applicazioni."],
+},
+{
+    title: "Analisi dell'Acqua e dei Dati con Bioindicatori",
+    description: "Regione Sicilia, ICS Maredolce",
+    contents: ["Ho guidato il mio team durante il processo di analisi delle acque utilizzando bioindicatori, organizzando e manipolando in modo efficiente i dati in Excel e collaborando efficacemente."],
+},
 ]
 
 
 export const certifications = [
-    {
-        title: "C1 CEFR English (CAE)",
-        description: "CAMBRIDGE ENGLISH",
-        content: "Advanced English",
-    },
-    // {
-    //     title: "B2 CEFR English (First)",
-    //     description: "CAMBRIDGE ENGLISH",
-    //     content: "Upper Intermediate English",
-    // },
-    // {
-    //     title: "B1 CEFR English (Preliminary)",
-    //     description: "CAMBRIDGE ENGLISH",
-    //     content: "Intermediate English",
-    // },
+{
+    title: "Inglese C1 - QCER (CAE)",
+    description: "CAMBRIDGE ENGLISH",
+    content: "Cerftificazione del livello di Inglese Avanzato",
+},
+// {
+//     title: "Inglese B2 QCER (First)",
+//     description: "CAMBRIDGE ENGLISH",
+//     content: "Inglese di Livello Intermedio Superiore",
+// },
+// {
+//     title: "Inglese B1 QCER (Preliminary)",
+//     description: "CAMBRIDGE ENGLISH",
+//     content: "Inglese di Livello Intermedio",
+// },
 ]

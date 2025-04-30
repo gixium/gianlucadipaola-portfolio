@@ -24,7 +24,7 @@ export const navItems = [
 
 export const about = [
     { icon: Hello, 
-        text: "Hi, I'm Gianluca. I'm a student of a Master's Degree in Computer Engineering, here at the Polytechnic University of Milan."},
+        text: "Hi, I'm Gianluca. I'm an engineer and a student of a Master's Degree in Computer Engineering, here at the Polytechnic University of Milan."},
     { icon: Studies, 
         text: "Being very passionate about technology and innovation, I thrive on continuously expanding my knowledge. My bachelor's degree at PoliMi has provided me with strong foundations in engineering, computer science, mathematics and electronics."},
     { icon: Idea, 
@@ -56,7 +56,7 @@ export const projects = [
     {
       title: "Codex Naturalis",
       description: "Java Distributed Programming",
-      content: "Team project: developed the digital version of a physical board game. We implemented it using Java Distributed Prgramming; we provided the game with advanced funcionalities, such as the live chat, the game preservation in case of network problems, et al. Our work earned us a final grade of 30/30 cum Laude.",
+      content: "Team project: developed the digital version of a physical board game, using Java Distributed Prgramming. I provided the game with advanced funcionalities, such as the live chat, the game preservation in case of network problems, et al. The work was regarded with a final grade of 30/30 cum Laude.",
       link: "https://github.com/grecodavide/IS24-AM08",
       badges: ["Java", "JavaFX", "Maven", "TCP", "RMI", "MVC", "GUI/TUI", "IntelliJ IDEA"],
       badgeColor: "yellow",
@@ -80,7 +80,7 @@ export const projects = [
     {
       title: "VentureLabs Flâneur",
       description: "Case study and Prototype design",
-      content: "Team project on the topics of Human-Computer Interaction. After the research phase and case study we followed the User Centered Design paradigm, developing the final prototype. Earned a final score of 29/30.",
+      content: "Team project on the topics of Human-Computer Interaction. After the research phase and case study we followed the User Centered Design paradigm, developing the final prototype; I built the prototype tailoring it to the needs of the target users, implementing functionalities that left no room for any compromise. Earned a final score of 29/30.",
       link: "https://github.com/gixium/VentureLabs",
       badges: ["Figma", "UCD", "UX", "HTML", "CSS", "PowerPoint"],
       badgeColor: "blue",
@@ -112,7 +112,7 @@ export const experiences = [
     {
         title: "TOP: Tutoring Online Program",
         description: "Harvard University, Bocconi University, Bicocca University, CIAI",
-        contents: ["I provided specialized tutoring to a student with difficulties, tailoring it to the student's needs. Earned recognition through an awarded open-badge for the acquired skills and knowledge."],
+        contents: ["I provided specialized tutoring to a student with difficulties, tailoring it to the student's specific needs. Earned recognition through an awarded open-badge for the acquired skills and knowledge."],
     },
     {
         title: "Metaverse - Student Tech Clash",

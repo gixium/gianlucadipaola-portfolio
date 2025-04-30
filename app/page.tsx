@@ -15,8 +15,8 @@ import {
   Github, 
   Linkedin, 
   Mail, 
-  // Sun, 
-  // Moon, 
+  Sun, 
+  Moon, 
   FileDown as Download,
   ChevronLeft,
   ChevronRight,
@@ -83,9 +83,9 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // const toggleDarkMode = () => {
-  //   setDarkMode(!darkMode)
-  // }
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode)
+  }
 
   const toggleView = () => {
     setIsGridView((prev) => !prev)
@@ -158,14 +158,14 @@ export default function Portfolio() {
 
                 {/* Contact Button & Theme Toggle */}
                 <div className="flex items-center gap-3">
-                  {/* <Button
+                  <Button
                     onClick={toggleDarkMode}
                     variant="ghost"
                     size="icon"
                     className="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400"
                   >
                     {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-                  </Button> */}
+                  </Button>
 
                   <div className="relative md:hidden">
                     <Button
@@ -210,14 +210,6 @@ export default function Portfolio() {
                     )}
                     </AnimatePresence>
                   </div>
-
-                  {/* <Button
-                    onClick={() => setContactOpen(true)}
-                    className="bg-gradient-to-r from-teal-500 to-purple-600 hover:from-teal-600 hover:to-purple-700 text-white"
-                  >
-                    Contact Me
-                  </Button> */}
-
                   <Btn03 className="font-semibold py-4 mr-2 rounded-full" particleCount={24} attractRadius={60} onClick={() => setContactOpen(true)} />
                 </div>
               </div>
@@ -318,7 +310,7 @@ export default function Portfolio() {
               <p className="text-xl md:text-1xl pt-2 mb-8 tracking-wide text-gray-600 dark:text-gray-300 sottotitolo">
                 {item.subtitle}
               </p>
-              <Btn03 className="font-semibold text-lg p-6 " particleCount={32} attractRadius={60} onClick={() => setContactOpen(true)} />
+              <Btn03 className="font-semibold text-lg p-6 rounded-full " particleCount={32} attractRadius={60} onClick={() => setContactOpen(true)} />
             </div>
           ))}
           
