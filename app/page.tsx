@@ -52,7 +52,7 @@ export default function Portfolio() {
   const [isLandingPage, setIsLandingPage] = useState(true)
   const [isGridView, setIsGridView] = useState(false)
   const { language } = useLanguage()
-  const data = language === "en" ? itData : enData
+  const data = language === "en" ? enData : itData
   const [contactOpen, setContactOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
