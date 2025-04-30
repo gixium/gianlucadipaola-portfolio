@@ -5,15 +5,15 @@ import { GraduationCap, Briefcase, Code, Award,
     } from "lucide-react"
 
 export const landing = [
-{ title: "Gianluca Di Paola", subtitle: "Ingegnere Informatico - *"},
+{ title: "Gianluca Di Paola", subtitle: "Ingegnere Informatico"},
 ]
 
 export const navItems = [
-{ name: "Chi sono", icon: UserRound },
-{ name: "Formazione", icon: GraduationCap },
-{ name: "Progetti", icon: Code },
-{ name: "Esperienze", icon: Briefcase },
-{ name: "Certificazioni", icon: Award },
+{ name: "Chi sono", id: "About", icon: UserRound },
+{ name: "Formazione", id: "Education", icon: GraduationCap },
+{ name: "Progetti", id: "Projects", icon: Code },
+{ name: "Esperienze", id: "Experience", icon: Briefcase },
+{ name: "Certificazioni", id: "Certifications", icon: Award },
 ]
 // export const navSocials = [
 //   { name: "GitHub", icon: Github, href: "https://github.com/gixium" },

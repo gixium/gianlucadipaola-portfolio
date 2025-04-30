@@ -9,11 +9,11 @@ export const landing = [
 ]
 
 export const navItems = [
-  { name: "About", icon: UserRound },
-  { name: "Education", icon: GraduationCap },
-  { name: "Projects", icon: Code },
-  { name: "Experience", icon: Briefcase },
-  { name: "Certifications", icon: Award },
+  { name: "About", id: "About", icon: UserRound },
+  { name: "Education", id: "Education", icon: GraduationCap },
+  { name: "Projects", id: "Projects", icon: Code },
+  { name: "Experience", id: "Experience", icon: Briefcase },
+  { name: "Certifications", id: "Certifications", icon: Award },
 ]
 // export const navSocials = [
 //   { name: "GitHub", icon: Github, href: "https://github.com/gixium" },

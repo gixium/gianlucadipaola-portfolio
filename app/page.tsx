@@ -52,7 +52,7 @@ export default function Portfolio() {
   const [isLandingPage, setIsLandingPage] = useState(true)
   const [isGridView, setIsGridView] = useState(false)
   const { language } = useLanguage()
-  const data = language === "en" ? enData : itData
+  const data = language === "en" ? itData : enData
   const [contactOpen, setContactOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -193,9 +193,9 @@ export default function Portfolio() {
                           {data.navItems.map((item) => (
                             <li key={item.name}>
                               <a
-                                href={`#${item.name.toLowerCase()}`}
+                                href={`#${item.id.toLowerCase()}`}
                                 onClick={(e) => {
-                                  handleSmoothScroll(e, item.name.toLowerCase())
+                                  handleSmoothScroll(e, item.id.toLowerCase())
                                   setMobileMenuOpen(false)
                                 }}
                                 className="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -222,9 +222,11 @@ export default function Portfolio() {
       <Dialog open={contactOpen} onOpenChange={setContactOpen}>
         <DialogContent className="bg-white dark:bg-gray-800 border-0 rounded-xl">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-gray-800 dark:text-gray-200">Contact Me</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-gray-800 dark:text-gray-200">
+             {language === "en" ? "Contact me" : "Contattami"}
+            </DialogTitle>
             <DialogDescription className="text-gray-600 dark:text-gray-400">
-              Connect with me through any of these platforms
+             {language === "en" ? "Connect with me through any of these platforms" : "Contattami attraverso la piattaforma che preferisci"}
             </DialogDescription>
           </DialogHeader>
           <div className="grid grid-cols-1 gap-2 py-2">
@@ -239,7 +241,9 @@ export default function Portfolio() {
               </div>
               <div>
                 <div className="font-medium">GitHub</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">View my projects</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  {language === "en" ? "View my projects" : "Guarda i miei progetti"}
+                </div>
               </div>
             </a>
             <a
@@ -251,8 +255,10 @@ export default function Portfolio() {
                 <Download className="h-6 w-6" />
               </div>
               <div>
-                <div className="font-medium">Download CV</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">Get my resume</div>
+                <div className="font-medium">Curriculum Vitae</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  {language === "en" ? "Get my resume" : "Scarica il mio curriculum"}
+                </div>
               </div>
             </a>
             <a
@@ -264,7 +270,9 @@ export default function Portfolio() {
               </div>
               <div>
                 <div className="font-medium">Email</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">ing@gianlucadipaola.com</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  ing@gianlucadipaola.com
+                </div>
               </div>
             </a>
             <a
@@ -278,7 +286,9 @@ export default function Portfolio() {
               </div>
               <div>
                 <div className="font-medium">LinkedIn</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">Connect with me</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  {language === "en" ? "Connect with me" : "Connettiamoci su LinkedIn"}
+                </div>
               </div>
             </a>
           </div>
@@ -348,7 +358,7 @@ export default function Portfolio() {
         >
           <h2 className="text-3xl font-bold mb-8 flex items-center text-gray-800 dark:text-gray-200">
             {/* <Star className="mr-2" /> */}
-            About me
+            {language === "en" ? "About me" : "Chi sono"}
           </h2>
           <div className="grid grid-rows-1 md:grid-rows-2 gap-6">
             {data.about.map((item, index) => (
@@ -372,7 +382,7 @@ export default function Portfolio() {
         >
           <h2 className="text-3xl font-bold mb-8 flex items-center text-gray-800 dark:text-gray-200">
             <GraduationCap className="mr-2" />
-            Education
+            {language === "en" ? "Education" : "Formazione"}
           </h2>
           <div className="grid grid-rows-1 md:grid-rows-1 gap-6">
             {data.education.map((education, index) => (
@@ -414,7 +424,7 @@ export default function Portfolio() {
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold flex items-center text-gray-800 dark:text-gray-200">
               <Code className="mr-2" />
-              Projects
+              {language === "en" ? "Projects" : "Progetti"}
             </h2>
             <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
               <motion.button
@@ -576,7 +586,7 @@ export default function Portfolio() {
         >
           <h2 className="text-3xl font-bold mb-8 flex items-center text-gray-800 dark:text-gray-200">
             <Briefcase className="mr-2" />
-            Experience
+            {language === "en" ? "Experience" : "Esperienze"}
           </h2>
           <div className="grid grid-rows-1 md:grid-rows-1 gap-6">
             {data.experiences.map((experience, index) => (
@@ -612,7 +622,7 @@ export default function Portfolio() {
         >
           <h2 className="text-3xl font-bold mb-8 flex items-center text-gray-800 dark:text-gray-200">
             <Award className="mr-2" />
-            Certifications
+            {language === "en" ? "Certifications" : "Certificazioni"}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {data.certifications.map((certification, index) => (

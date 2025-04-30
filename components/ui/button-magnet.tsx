@@ -5,6 +5,8 @@ import { motion, useAnimation } from "motion/react"
 // import { Magnet } from "lucide-react"
 import { useEffect, useState, useCallback } from "react"
 import { Button } from "@/components/ui/button"
+import { useLanguage } from "@/hooks/use-language"
+import React from "react"
 
 interface Btn03Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   particleCount?: number
@@ -21,6 +23,8 @@ export default function Btn03({ className, particleCount = 12, ...props }: Btn03
   const [isAttracting, setIsAttracting] = useState(false)
   const [particles, setParticles] = useState<Particle[]>([])
   const particlesControl = useAnimation()
+  const { language } = useLanguage()
+
 
   useEffect(() => {
     const newParticles = Array.from({ length: particleCount }, (_, i) => ({
@@ -92,7 +96,7 @@ export default function Btn03({ className, particleCount = 12, ...props }: Btn03
       <span className="relative w-full flex items-center justify-center gap-2">
         {/* <Magnet className={cn("w-4 h-4 transition-transform duration-300", isAttracting && "scale-110")} /> */}
         {/* {isAttracting ? "Attracting" : "Hover me"} */}
-        Contact me
+        {language === "en" ? "Contact me" : "Contattami"}
       </span>
     </Button>
   )
