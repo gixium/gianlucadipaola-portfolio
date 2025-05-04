@@ -96,7 +96,7 @@ export default function Btn03({ className, particleCount = 12, ...props }: Btn03
       <span className="relative w-full flex items-center justify-center gap-2">
         {/* <Magnet className={cn("w-4 h-4 transition-transform duration-300", isAttracting && "scale-110")} /> */}
         {/* {isAttracting ? "Attracting" : "Hover me"} */}
-        {language === "en" ? "Contact me" : "Contattami"}
+        {language === "it" ? "Contattami" : "Contact me"}
       </span>
     </Button>
   )

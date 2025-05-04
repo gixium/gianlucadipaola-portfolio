@@ -52,7 +52,7 @@ export default function Portfolio() {
   const [isLandingPage, setIsLandingPage] = useState(true)
   const [isGridView, setIsGridView] = useState(false)
   const { language } = useLanguage()
-  const data = language === "en" ? enData : itData
+  const data = language === "it" ? itData : enData
   const [contactOpen, setContactOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -145,7 +145,7 @@ export default function Portfolio() {
                       <li key={item.name}>
                         <a
                           href={`#${item.name.toLowerCase()}`}
-                          onClick={(e) => handleSmoothScroll(e, item.name.toLowerCase())}
+                          onClick={(e) => handleSmoothScroll(e, item.id.toLowerCase())}
                           className="text-gray-700 dark:text-gray-300 hover:text-teal-500 dark:hover:text-teal-400 transition-colors flex items-center gap-2"
                         >
                           <item.icon className="h-5 w-5 hidden lg:inline" />
@@ -223,10 +223,10 @@ export default function Portfolio() {
         <DialogContent className="bg-white dark:bg-gray-800 border-0 rounded-xl">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-gray-800 dark:text-gray-200">
-             {language === "en" ? "Contact me" : "Contattami"}
+             {language === "it" ? "Contattami" : "Contact me"}
             </DialogTitle>
             <DialogDescription className="text-gray-600 dark:text-gray-400">
-             {language === "en" ? "Connect with me through any of these platforms" : "Contattami attraverso la piattaforma che preferisci"}
+             {language === "it" ? "Contattami attraverso la piattaforma che preferisci" : "Connect with me through any of these platforms"}
             </DialogDescription>
           </DialogHeader>
           <div className="grid grid-cols-1 gap-2 py-2">
@@ -242,7 +242,7 @@ export default function Portfolio() {
               <div>
                 <div className="font-medium">GitHub</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">
-                  {language === "en" ? "View my projects" : "Guarda i miei progetti"}
+                  {language === "it" ? "Guarda i miei progetti" : "View my projects"}
                 </div>
               </div>
             </a>
@@ -257,7 +257,7 @@ export default function Portfolio() {
               <div>
                 <div className="font-medium">Curriculum Vitae</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">
-                  {language === "en" ? "Get my resume" : "Scarica il mio curriculum"}
+                  {language === "it" ? "Scarica il mio curriculum" : "Get my resume"}
                 </div>
               </div>
             </a>
@@ -287,7 +287,7 @@ export default function Portfolio() {
               <div>
                 <div className="font-medium">LinkedIn</div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">
-                  {language === "en" ? "Connect with me" : "Connettiamoci su LinkedIn"}
+                  {language === "it" ? "Connettiamoci su LinkedIn" : "Connect with me"}
                 </div>
               </div>
             </a>
@@ -358,7 +358,7 @@ export default function Portfolio() {
         >
           <h2 className="text-3xl font-bold mb-8 flex items-center text-gray-800 dark:text-gray-200">
             {/* <Star className="mr-2" /> */}
-            {language === "en" ? "About me" : "Chi sono"}
+            {language === "it" ? "Chi sono" : "About me"}
           </h2>
           <div className="grid grid-rows-1 md:grid-rows-2 gap-6">
             {data.about.map((item, index) => (
@@ -382,7 +382,7 @@ export default function Portfolio() {
         >
           <h2 className="text-3xl font-bold mb-8 flex items-center text-gray-800 dark:text-gray-200">
             <GraduationCap className="mr-2" />
-            {language === "en" ? "Education" : "Formazione"}
+            {language === "it" ? "Formazione" : "Education"}
           </h2>
           <div className="grid grid-rows-1 md:grid-rows-1 gap-6">
             {data.education.map((education, index) => (
@@ -424,7 +424,7 @@ export default function Portfolio() {
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold flex items-center text-gray-800 dark:text-gray-200">
               <Code className="mr-2" />
-              {language === "en" ? "Projects" : "Progetti"}
+              {language === "it" ? "Progetti" : "Projects"}
             </h2>
             <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
               <motion.button
@@ -586,7 +586,7 @@ export default function Portfolio() {
         >
           <h2 className="text-3xl font-bold mb-8 flex items-center text-gray-800 dark:text-gray-200">
             <Briefcase className="mr-2" />
-            {language === "en" ? "Experience" : "Esperienze"}
+            {language === "it" ? "Esperienze" : "Experience"}
           </h2>
           <div className="grid grid-rows-1 md:grid-rows-1 gap-6">
             {data.experiences.map((experience, index) => (
@@ -622,7 +622,7 @@ export default function Portfolio() {
         >
           <h2 className="text-3xl font-bold mb-8 flex items-center text-gray-800 dark:text-gray-200">
             <Award className="mr-2" />
-            {language === "en" ? "Certifications" : "Certificazioni"}
+            {language === "it" ? "Certificazioni" : "Certifications"}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {data.certifications.map((certification, index) => (
