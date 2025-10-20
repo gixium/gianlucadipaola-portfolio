@@ -21,7 +21,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronsDown,
-  X, 
+  // X, 
   // Star,
   // ChevronDown,
   // User,
@@ -155,6 +155,8 @@ export default function Portfolio() {
   const setEmblaViewportRef = useCallback((node: HTMLDivElement | null) => {
     emblaViewportRef.current = node
     // Passa comunque il nodo ad Embla (emblaRef è il callback di useEmblaCarousel)
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     emblaRef(node as any)
   }, [emblaRef])
 
@@ -245,6 +247,7 @@ export default function Portfolio() {
       }, 100)
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     document.addEventListener('mousedown', handleSelectionStart as any)
     document.addEventListener('mouseup', handleSelectionEnd)
 
