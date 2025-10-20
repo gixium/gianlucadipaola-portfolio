@@ -151,7 +151,7 @@ export function LanguagePicker({
               )}
             >
               {isExpanded ? (
-                <div className="flex items-center justify-start w-full h-full px-2 gap-2">
+                <div className="flex items-center justify-center w-full h-full px-2 gap-2">
                   <span className="text-lg leading-none flex-shrink-0">{lang.flag}</span>
                   <AnimatePresence>
                     <motion.span

@@ -655,7 +655,11 @@ export default function Portfolio() {
                 className="flex items-center space-x-1 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
                 whileTap={{ scale: 0.9 }}
               >
-                <span className="font-semibold ml-4">{isGridView ? "view carousel" : "view grid"}</span>
+                <span className="font-semibold ml-4">
+                  { isGridView 
+                    ? language === "it" ? "vedi carosello" : "view carousel"
+                    : language === "it" ? "vedi griglia" : "view grid"}
+                  </span>
                 {/* <ChevronDown className={`h-4 w-4 transform transition-transform ${isGridView ? "rotate-180" : ""}`} /> */}
               </motion.button>
             </div>
