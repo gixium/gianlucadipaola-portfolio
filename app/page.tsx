@@ -51,13 +51,15 @@ const titleFont = Pacifico({
 export default function Portfolio() {
   const [darkMode, setDarkMode] = useState(false)
   const [isLandingPage, setIsLandingPage] = useState(true)
-  const [isGridView, setIsGridView] = useState(false)
+  const [isGridView, setIsGridView] = useState<boolean | null>(null)
   const { language, setLanguage } = useLanguage()
   const data = language === "it" ? itData : enData
   const [contactOpen, setContactOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [isSelectingText, setIsSelectingText] = useState(false)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const [isSelectingText, setIsSelectingText] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
 
   useEffect(() => {
     // Check user's color scheme preference
@@ -129,42 +131,76 @@ export default function Portfolio() {
     }
   }
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, watchDrag: !isSelectingText, slidesToScroll: 1 }, [WheelGesturesPlugin({ forceWheelaxis: X }), Autoplay({ delay: 5000, stopOnMouseEnter: true, stopOnInteraction: false })])
-  // const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false, slidesToScroll: 1 }, [WheelGesturesPlugin({ forceWheelaxis: X }), Autoplay({ delay: 5000, stopOnMouseEnter: true, stopOnInteraction: false })])
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true, 
+    dragFree: false, 
+    slidesToScroll: 1,
+    duration: 20,
+    watchDrag: isMobile ? true : !isSelectingText  // Enable drag always on mobile, conditionally on desktop
+  }, [
+    WheelGesturesPlugin({ forceWheelaxis: X }), 
+    Autoplay({ delay: 5000, stopOnMouseEnter: true, stopOnInteraction: false })
+  ])
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
 
   const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
   const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi])
 
+  /* Update Button States */
   const onSelect = useCallback(() => {
     if (!emblaApi) return
     setPrevBtnEnabled(emblaApi.canScrollPrev())
     setNextBtnEnabled(emblaApi.canScrollNext())
   }, [emblaApi])
 
+  /* Set up embla event listeners */
   useEffect(() => {
     if (!emblaApi) return
     onSelect()
     emblaApi.on("select", onSelect)
   }, [emblaApi, onSelect])
-
-  /* Check Screen Size */
+  
+  /* Update Embla watchDrag option based on text selection state (Desktop only) */
   useEffect(() => {
-    const checkScreenSize = () => {
-      setIsGridView(window.innerWidth < 768)
+    if (emblaApi && !isMobile) {
+      emblaApi.reInit({ watchDrag: !isSelectingText })
+    }
+  }, [emblaApi, isSelectingText, isMobile])
+
+  /* Detect if device is mobile/tablet */
+  useEffect(() => {
+    const checkIfMobile = () => {
+      const mobile = window.innerWidth < 1024 || 
+                     ('ontouchstart' in window) || 
+                     (navigator.maxTouchPoints > 0)
+      setIsMobile(mobile)
     }
 
-    checkScreenSize()
-    window.addEventListener("resize", checkScreenSize)
-    return () => window.removeEventListener("resize", checkScreenSize)
+    checkIfMobile()
+    window.addEventListener('resize', checkIfMobile)
+    return () => window.removeEventListener('resize', checkIfMobile)
   }, [])
 
-  /* Handle Text Selection to Pause Carousel */
+  /* Set initial view based on device */
   useEffect(() => {
+    const setInitialView = () => {
+      const mobile = window.innerWidth < 768
+      setIsGridView(mobile) // Grid on mobile, Carousel on desktop
+    }
+
+    if (isGridView === null) {
+      setInitialView()
+    }
+  }, [isGridView])
+
+  /* Handle Text Selection to Pause Carousel (Desktop only) */
+  useEffect(() => {
+    if (isMobile) return // Skip this logic on mobile devices
+
     const handleSelectionStart = () => {
       setIsSelectingText(true)
-      if (emblaApi) emblaApi.plugins().autoplay?.stop() // Check if emblaApi is not null
+      if (emblaApi) emblaApi.plugins().autoplay?.stop()
     }
 
     const handleSelectionEnd = () => {
@@ -172,33 +208,19 @@ export default function Portfolio() {
         const selection = window.getSelection()
         if (!selection || selection.toString().length === 0) {
           setIsSelectingText(false)
-          if (emblaApi) emblaApi.plugins().autoplay?.play() // Check if emblaApi is not null
+          if (emblaApi) emblaApi.plugins().autoplay?.play()
         }
       }, 100)
     }
 
-    /* Add event listeners for mouse and touch events */
-    document.addEventListener("mousedown", handleSelectionStart)
-    document.addEventListener("mouseup", handleSelectionEnd)
-    document.addEventListener("touchstart", handleSelectionStart)
-    document.addEventListener("touchend", handleSelectionEnd)
+    document.addEventListener('mousedown', handleSelectionStart)
+    document.addEventListener('mouseup', handleSelectionEnd)
 
-    /* Cleanup event listeners on unmount */
     return () => {
-      document.removeEventListener("mousedown", handleSelectionStart)
-      document.removeEventListener("mouseup", handleSelectionEnd)
-      document.removeEventListener("touchstart", handleSelectionStart)
-      document.removeEventListener("touchend", handleSelectionEnd)
+      document.removeEventListener('mousedown', handleSelectionStart)
+      document.removeEventListener('mouseup', handleSelectionEnd)
     }
-  }, [emblaApi])
-
-  /* Update Embla watchDrag option based on text selection state */
-  useEffect(() => {
-    if (emblaApi) {
-      // Update the watchDrag option dynamically
-      emblaApi.reInit({ watchDrag: !isSelectingText })
-    }
-  }, [emblaApi, isSelectingText])
+  }, [emblaApi, isMobile])
 
   return (
     <div
@@ -613,52 +635,66 @@ export default function Portfolio() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3 }}
               >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={`grid-content-${language}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-6"
+                  >
+                    {data.projects.map((project, index) => (
+                      <motion.div key={index} whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
+                        <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors h-full flex flex-col">
+                          <CardHeader className="flex-shrink-0">
+                            <a
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-gray-800 dark:text-gray-200 hover:text-teal-500 dark:hover:text-teal-400 transition-colors titolo-2"
+                            >
+                              <CardTitle className="flex items-center gap-2">
+                                  <Github className="h-6 w-6" />
+                                  {project.title}
+                              </CardTitle>
+                              <CardDescription className="uppercase text-gray-600 dark:text-gray-400 font-semibold titolo-3 mt-1.5">
+                                {project.description}
+                              </CardDescription>
+                            </a>
+                          </CardHeader>
+                          <CardContent className="text-gray-700 dark:text-gray-300 flex-grow flex flex-col justify-between">
+                            <p className="mb-4">{project.content}</p>
+                            <div className="flex flex-wrap gap-2 mt-auto pt-4">
+                              {project.badges.map((badge, badgeIndex) => (
+                                <Badge
+                                  key={badgeIndex}
+                                  variant="secondary"
+                                  // className={`bg-${project.badgeColor}-100 text-${project.badgeColor}-800 dark:bg-${project.badgeColor}-900 dark:text-${project.badgeColor}-200`}
+                                  className={`
+                                          ${project.badgeColor === "teal" ? "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200" : ""}
+                                          ${project.badgeColor === "purple" ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200" : ""}
+                                          ${project.badgeColor === "blue" ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200" : ""}
+                                          ${project.badgeColor === "red" ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200" : ""}
+                                          ${project.badgeColor === "pink" ? "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200" : ""}
+                                          ${project.badgeColor === "yellow" ? "bg-yellow-200 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200" : ""}
+                                  `}
+                                >
+                                  {badge}
+                                </Badge>
+                              ))}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </AnimatePresence>
+
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {data.projects.map((project, index) => (
-                    <motion.div key={index} whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
-                      <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors h-full flex flex-col">
-                        <CardHeader className="flex-shrink-0">
-                          <a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-gray-800 dark:text-gray-200 hover:text-teal-500 dark:hover:text-teal-400 transition-colors titolo-2"
-                          >
-                            <CardTitle className="flex items-center gap-2">
-                                <Github className="h-6 w-6" />
-                                {project.title}
-                            </CardTitle>
-                            <CardDescription className="uppercase text-gray-600 dark:text-gray-400 font-semibold titolo-3 mt-1.5">
-                              {project.description}
-                            </CardDescription>
-                          </a>
-                        </CardHeader>
-                        <CardContent className="text-gray-700 dark:text-gray-300 flex-grow flex flex-col justify-between">
-                          <p className="mb-4">{project.content}</p>
-                          <div className="flex flex-wrap gap-2 mt-auto pt-4">
-                            {project.badges.map((badge, badgeIndex) => (
-                              <Badge
-                                key={badgeIndex}
-                                variant="secondary"
-                                // className={`bg-${project.badgeColor}-100 text-${project.badgeColor}-800 dark:bg-${project.badgeColor}-900 dark:text-${project.badgeColor}-200`}
-                                className={`
-                                        ${project.badgeColor === "teal" ? "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-200" : ""}
-                                        ${project.badgeColor === "purple" ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200" : ""}
-                                        ${project.badgeColor === "blue" ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200" : ""}
-                                        ${project.badgeColor === "red" ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200" : ""}
-                                        ${project.badgeColor === "pink" ? "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200" : ""}
-                                        ${project.badgeColor === "yellow" ? "bg-yellow-200 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200" : ""}
-                                `}
-                              >
-                                {badge}
-                              </Badge>
-                            ))}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  ))}
                 </div>
+
               </motion.div>
             ) : (
               <motion.div
@@ -670,10 +706,10 @@ export default function Portfolio() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="relative px-12">
-                  <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
+                  <div className={`overflow-hidden ${!isMobile && isSelectingText ? '' : 'cursor-grab active:cursor-grabbing'}`} ref={emblaRef}>
                     <div className="flex">
                       {data.projects.map((project, index) => (
-                        <div key={index} className="flex-[0_0_50%] min-w-0 pl-4">
+                        <div key={`${project.title}-${index}`} className="flex-[0_0_50%] min-w-0 pl-4">
                           <motion.div whileHover={{ scale: 1.03 }} transition={{ duration: 0.3 }}>
                             <Card className="bg-white dark:bg-gray-800 shadow-md transition-colors h-full">
                               <CardHeader>
