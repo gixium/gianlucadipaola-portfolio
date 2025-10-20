@@ -3,7 +3,7 @@
 import { useLanguage } from "@/hooks/use-language"
 import * as enData from "@/lib/siteData"
 import * as itData from "@/lib/siteData-ITA"
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, use, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -55,6 +55,8 @@ export default function Portfolio() {
   const data = language === "it" ? itData : enData
   const [contactOpen, setContactOpen] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isSelectingText, setIsSelectingText] = useState(false)
+  const mobileMenuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // Check user's color scheme preference
@@ -83,6 +85,25 @@ export default function Portfolio() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  /* Close mobile menu on outside click */
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      if (mobileMenuOpen && mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false)
+      }
+    }
+
+    if (mobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside)
+      document.addEventListener("touchstart", handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+      document.removeEventListener("touchstart", handleClickOutside)
+    }
+  }, [mobileMenuOpen])
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
   }
@@ -102,7 +123,8 @@ export default function Portfolio() {
     }
   }
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false, slidesToScroll: 1 }, [WheelGesturesPlugin({ forceWheelaxis: X }), Autoplay({ delay: 5000, stopOnMouseEnter: true, stopOnInteraction: false })])
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, watchDrag: !isSelectingText, slidesToScroll: 1 }, [WheelGesturesPlugin({ forceWheelaxis: X }), Autoplay({ delay: 5000, stopOnMouseEnter: true, stopOnInteraction: false })])
+  // const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false, slidesToScroll: 1 }, [WheelGesturesPlugin({ forceWheelaxis: X }), Autoplay({ delay: 5000, stopOnMouseEnter: true, stopOnInteraction: false })])
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
 
@@ -121,6 +143,57 @@ export default function Portfolio() {
     emblaApi.on("select", onSelect)
   }, [emblaApi, onSelect])
 
+  /* Check Screen Size */
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsGridView(window.innerWidth < 768)
+    }
+
+    checkScreenSize()
+    window.addEventListener("resize", checkScreenSize)
+    return () => window.removeEventListener("resize", checkScreenSize)
+  }, [])
+
+  /* Handle Text Selection to Pause Carousel */
+  useEffect(() => {
+    const handleSelectionStart = () => {
+      setIsSelectingText(true)
+      if (emblaApi) emblaApi.plugins().autoplay?.stop() // Check if emblaApi is not null
+    }
+
+    const handleSelectionEnd = () => {
+      setTimeout(() => {
+        const selection = window.getSelection()
+        if (!selection || selection.toString().length === 0) {
+          setIsSelectingText(false)
+          if (emblaApi) emblaApi.plugins().autoplay?.play() // Check if emblaApi is not null
+        }
+      }, 100)
+    }
+
+    /* Add event listeners for mouse and touch events */
+    document.addEventListener("mousedown", handleSelectionStart)
+    document.addEventListener("mouseup", handleSelectionEnd)
+    document.addEventListener("touchstart", handleSelectionStart)
+    document.addEventListener("touchend", handleSelectionEnd)
+
+    /* Cleanup event listeners on unmount */
+    return () => {
+      document.removeEventListener("mousedown", handleSelectionStart)
+      document.removeEventListener("mouseup", handleSelectionEnd)
+      document.removeEventListener("touchstart", handleSelectionStart)
+      document.removeEventListener("touchend", handleSelectionEnd)
+    }
+  }, [emblaApi])
+
+  /* Update Embla watchDrag option based on text selection state */
+  useEffect(() => {
+    if (emblaApi) {
+      // Update the watchDrag option dynamically
+      emblaApi.reInit({ watchDrag: !isSelectingText })
+    }
+  }, [emblaApi, isSelectingText])
+
   return (
     <div
       className={`min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300 pt-20 ${isLandingPage ? "landing-page" : ""}`}
@@ -136,7 +209,11 @@ export default function Portfolio() {
               <div className="flex items-center justify-between">
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500 to-purple-600 opacity-5 dark:opacity-10 bg-f rounded-full"></div>
                 {/* Logo/Name */}
-                <div className={`${titleFont.className} text-lg sm:text-xl text-gray-900 dark:text-gray-100 pl-2`}>Gianluca</div>
+                <a href="#start" onClick={(e) => handleSmoothScroll(e, "start")} className="group">
+                  <div className={`${titleFont.className} text-lg sm:text-xl text-gray-900 dark:text-gray-100 pl-2 transition-colors duration-100 group-hover:text-purple-700 dark:group-hover:text-purple-500`}>
+                  Gianluca
+                  </div>
+                </a>
 
                 {/* Navigation Links */}
                 <nav className="hidden md:block w-auto">
@@ -167,7 +244,7 @@ export default function Portfolio() {
                     {darkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                   </Button>
 
-                  <div className="relative md:hidden">
+                  <div className="relative md:hidden" ref={mobileMenuRef}>
                     <Button
                       onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                       variant="outline"
@@ -344,6 +421,7 @@ export default function Portfolio() {
 
       {/*! Start section  */}
       <div className="start" id="start"> </div>
+      <div className="start"> </div>
 
       <main className="container mx-auto px-4 py-16 space-y-32">
 
