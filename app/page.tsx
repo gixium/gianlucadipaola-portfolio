@@ -3,7 +3,7 @@
 import { useLanguage } from "@/hooks/use-language"
 import * as enData from "@/lib/siteData"
 import * as itData from "@/lib/siteData-ITA"
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useState, useEffect, useCallback, useRef, useMemo } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -131,21 +131,49 @@ export default function Portfolio() {
     }
   }
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    loop: true, 
-    dragFree: false, 
+  // Drag del carosello solo su mobile (disattivato su desktop)
+  const emblaOptions = useMemo(() => ({
+    loop: true,
+    dragFree: false,
     slidesToScroll: 1,
     duration: 20,
-    watchDrag: isMobile ? true : !isSelectingText  // Enable drag always on mobile, conditionally on desktop
-  }, [
-    WheelGesturesPlugin({ forceWheelaxis: X }), 
-    Autoplay({ delay: 5000, stopOnMouseEnter: true, stopOnInteraction: false })
-  ])
+    // drag attivo solo su dispositivi mobili
+    watchDrag: isMobile,
+  }), [isMobile])
+
+  // Plugin coerenti con il device
+  const emblaPlugins = useMemo(() => [
+    Autoplay({ delay: 5000, stopOnMouseEnter: true, stopOnInteraction: true }),
+    ...(isMobile ? [] : [WheelGesturesPlugin({ forceWheelAxis: 'x' })]),
+  ], [isMobile])
+
+  // Inizializzazione finale
+  const [emblaRef, emblaApi] = useEmblaCarousel(emblaOptions, emblaPlugins)
+
+  // Ref al viewport per distinguere click dentro/fuori il carosello
+  const emblaViewportRef = useRef<HTMLDivElement | null>(null)
+  const setEmblaViewportRef = useCallback((node: HTMLDivElement | null) => {
+    emblaViewportRef.current = node
+    // Passa comunque il nodo ad Embla (emblaRef è il callback di useEmblaCarousel)
+    emblaRef(node as any)
+  }, [emblaRef])
+
+  
   const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
   const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
 
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi])
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi])
+  // Stop autoplay prima dello scroll
+  const scrollPrev = useCallback(() => {
+    if (!emblaApi) return
+    emblaApi.plugins().autoplay?.stop()
+    emblaApi.scrollPrev()
+  }, [emblaApi])
+
+  const scrollNext = useCallback(() => {
+    if (!emblaApi) return
+    emblaApi.plugins().autoplay?.stop()
+    emblaApi.scrollNext()
+  }, [emblaApi])
 
   /* Update Button States */
   const onSelect = useCallback(() => {
@@ -198,9 +226,13 @@ export default function Portfolio() {
   useEffect(() => {
     if (isMobile) return // Skip this logic on mobile devices
 
-    const handleSelectionStart = () => {
+    // Avvia "selezione testo" solo se il mousedown è DENTRO il viewport Embla
+    const handleSelectionStart = (e: MouseEvent) => {
+      const target = e.target as Node | null
+      // Fuori dal viewport? Esci: niente reInit, niente stop autoplay
+      if (!emblaViewportRef.current || !target || !emblaViewportRef.current.contains(target)) return
       setIsSelectingText(true)
-      if (emblaApi) emblaApi.plugins().autoplay?.stop()
+      emblaApi?.plugins().autoplay?.stop()
     }
 
     const handleSelectionEnd = () => {
@@ -208,12 +240,12 @@ export default function Portfolio() {
         const selection = window.getSelection()
         if (!selection || selection.toString().length === 0) {
           setIsSelectingText(false)
-          if (emblaApi) emblaApi.plugins().autoplay?.play()
+          emblaApi?.plugins().autoplay?.play()
         }
       }, 100)
     }
 
-    document.addEventListener('mousedown', handleSelectionStart)
+    document.addEventListener('mousedown', handleSelectionStart as any)
     document.addEventListener('mouseup', handleSelectionEnd)
 
     return () => {
@@ -706,7 +738,11 @@ export default function Portfolio() {
                 transition={{ duration: 0.3 }}
               >
                 <div className="relative px-12">
-                  <div className={`overflow-hidden ${!isMobile && isSelectingText ? '' : 'cursor-grab active:cursor-grabbing'}`} ref={emblaRef}>
+                  <div 
+                    className={`overflow-hidden ${!isMobile ? '' : 'cursor-grab active:cursor-grabbing'}`}
+                    ref={setEmblaViewportRef}
+                    // className={`overflow-hidden ${!isMobile && isSelectingText ? '' : 'cursor-grab active:cursor-grabbing'}`} ref={emblaRef}
+                  >
                     <div className="flex">
                       {data.projects.map((project, index) => (
                         <div key={`${project.title}-${index}`} className="flex-[0_0_50%] min-w-0 pl-4">
