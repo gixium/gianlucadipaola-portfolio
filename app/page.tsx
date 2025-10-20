@@ -59,6 +59,7 @@ export default function Portfolio() {
   const mobileMenuRef = useRef<HTMLDivElement>(null)
   const [isSelectingText, setIsSelectingText] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [email, setEmail] = useState<string | null>(null)
 
 
   useEffect(() => {
@@ -228,10 +229,10 @@ export default function Portfolio() {
   useEffect(() => {
     if (isMobile) return // Skip this logic on mobile devices
 
-    // Avvia "selezione testo" solo se il mousedown è DENTRO il viewport Embla
+    /* Avvia "selezione testo" solo se il mousedown è DENTRO il viewport Embla */
     const handleSelectionStart = (e: MouseEvent) => {
       const target = e.target as Node | null
-      // Fuori dal viewport? Esci: niente reInit, niente stop autoplay
+      /* Fuori dal viewport? Esci: niente reInit, niente stop autoplay */
       if (!emblaViewportRef.current || !target || !emblaViewportRef.current.contains(target)) return
       setIsSelectingText(true)
       emblaApi?.plugins().autoplay?.stop()
@@ -256,6 +257,15 @@ export default function Portfolio() {
       document.removeEventListener('mouseup', handleSelectionEnd)
     }
   }, [emblaApi, isMobile])
+
+  /* Mail revealing logic SOLO client-side */
+  useEffect(() => {
+    const b64 = 'aW5nQGdpYW5sdWNhZGlwYW9sYS5jb20=' // Base64 della tua email
+    const decoded = typeof window !== 'undefined' ? atob(b64) : null
+    if (decoded) setEmail(decoded)
+  }, [])
+
+
 
   return (
     <div
@@ -428,7 +438,7 @@ export default function Portfolio() {
                 </div>
               </div>
             </a>
-            <a
+            {/* <a
               href="mailto:ing@gianlucadipaola.com"
               className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-800 dark:text-gray-200"
             >
@@ -441,7 +451,31 @@ export default function Portfolio() {
                   ing@gianlucadipaola.com
                 </div>
               </div>
+            </a> */}
+
+            {/* Mail revealing skeleton SOLO client-side */}
+            <a
+              href={email ? `mailto:${email}` : '#'}
+              onClick={(e) => {
+                if (!email) e.preventDefault() // evita errore se ancora non decodificata
+              }}
+              className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-800 dark:text-gray-200"
+              aria-label="Send email"
+            >
+              <div className="p-2 rounded-full bg-gray-100/0 dark:bg-gray-700/0">
+                <Mail className="h-6 w-6" />
+              </div>
+
+              <div>
+                <div className="font-medium">Email</div>
+
+                {/* mostra la mail solo dopo decodifica */}
+                <div className="text-sm text-gray-500 dark:text-gray-400" aria-live="polite">
+                  {email ?? <span className="opacity-0">loading…</span>}
+                </div>
+              </div>
             </a>
+
             <a
               href="https://linkedin.com/in/gianlucadipaola"
               target="_blank"

@@ -37,12 +37,12 @@ export const education = [
 {
     title: "Laurea Magistrale in Ingegneria Informatica, ICT, Business e Innovazione",
     description: "Politecnico di Milano",
-    contents: ["Attualmente studente"],
+    contents: ["Attualmente in corso", "Corsi rilevanti: Architetture Avanzate dei Calcolatori, Sicurezza del Software, Sviluppo di App con Flutter, Sistemi Avanzati per Basi di Dati, Ingegneria del Software Avanzata, Valutazione delle Prestazioni, Progettazione di Processi e Servizi in Camunda, Tecnologie per i Sistemi Informativi"],
 },
 {
     title: "Laurea Triennale in Ingegneria Informatica",
     description: "Politecnico di Milano",
-    contents: ["Corsi rilevanti (informatica): Ingegneria del Software, Programmazione Orientata agli Oggetti, Algoritmi (fondamentali e per la bioinformatica), Strutture Dati, Macchine a Stati Finiti, Software Defined Networking, Database e Progettazione, Architettura dei Calcolatori, Sistemi Operativi, Interazione Uomo-Macchina", "Corsi rilevanti (ingegneria): Analisi Matematica I e II, Algebra Lineare, Geometria, Fisica, Probabilità e Statistica, Chimica Generale, Automazione, Logica e Algebra, Sistemi Informativi, Economia e Organizzazione Aziendale, Elettronica"],
+    contents: ["Corsi rilevanti in Informatica: Ingegneria del Software, Programmazione Orientata agli Oggetti, Algoritmi (fondamentali e per la bioinformatica), Strutture Dati, Macchine a Stati Finiti, Software Defined Networking, Database e Progettazione, Architettura dei Calcolatori, Sistemi Operativi, Interazione Uomo-Macchina", "Corsi rilevanti in Ingegneria: Analisi Matematica I e II, Algebra Lineare, Geometria, Fisica, Probabilità e Statistica, Chimica Generale, Automazione, Logica e Algebra, Sistemi Informativi, Economia e Organizzazione Aziendale, Elettronica"],
 },
 {
     title: "Diploma di Maturità Scientifica",

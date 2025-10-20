@@ -37,12 +37,12 @@ export const education = [
     {
         title: "Master of Science Degree in Computer Engineering, ICT, Business and Innovation",
         description: "Polytechnic University of Milan",
-        contents: ["Currently attending"],
+        contents: ["Currently attending", "Relevant Coursework: Advanced Computer Architectures, Software Security, Flutter App Development, Advanced Database Systems, Advanced Software Engineering, Performance Evaluation, Process and Service Design with Camunda, Technologies for Information Systems"],
     },
     {
         title: "Bachelor of Science Degree in Engineering Of Computing Systems",
         description: "Polytechnic University of Milan",
-        contents: ["Relevant Coursework (informatics): Software Engineering, Object-Oriented Programming, Algorithms (fundamental and for bioinformatics), Data Structures, Finite State Machines, Software Defined Networking, Databases and Design, Computer Architecture, Operating Systems, Human-Computer Interaction", "Relevant Coursework (engineering): Calculus I & II, Linear Algebra, Geometry, Physics, Probability & Statistics, General Chemistry, Automation, Logic & Algebra, Information Systems, Business Economics & Organization, Electronics"],
+        contents: ["Relevant Coursework on Informatics: Software Engineering, Object-Oriented Programming, Algorithms (fundamental and for bioinformatics), Data Structures, Finite State Machines, Software Defined Networking, Databases and Design, Computer Architecture, Operating Systems, Human-Computer Interaction", "Relevant Coursework on Engineering: Calculus I & II, Linear Algebra, Geometry, Physics, Probability & Statistics, General Chemistry, Automation, Logic & Algebra, Information Systems, Business Economics & Organization, Electronics"],
     },
     {
         title: "High School Diploma in Scientific Studies",
