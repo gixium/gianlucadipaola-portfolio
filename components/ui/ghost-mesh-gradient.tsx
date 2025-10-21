@@ -2,7 +2,19 @@
 
 import { MeshGradient } from "@paper-design/shaders-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
+
+const EYE_MAX_OFFSET = 14;      // ampiezza massima dello sguardo in px
+const FOLLOW_SMOOTHNESS = 0.5; // 0..1 (più grande = più reattivo, più piccolo = più morbido)
+const TOUCH_WOBBLE_MS = 2200;   // intervallo “respiro” su touch (ms)
+
+const isTouchDevice = () =>
+  typeof window !== "undefined" &&
+  ("ontouchstart" in window || navigator.maxTouchPoints > 0)
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
 interface GhostMeshGradientProps {
   isDarkMode: boolean
@@ -28,11 +40,14 @@ export function GhostMeshGradient({ isDarkMode }: GhostMeshGradientProps) {
 
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [eyeOffset, setEyeOffset] = useState({ x: 0, y: 0 })
   const [isSmiling, setIsSmiling] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [showGhost, setShowGhost] = useState(false)
-
+  // E  ye movement
+  const eyeTarget = useRef({ x: 0, y: 0 }) // Posizione “desiderata” degli occhi (usata per la rincorsa smooth)
+  const [eyeOffset, setEyeOffset] = useState({ x: 0, y: 0 }) // Stato che guida il rendering
+  const containerRef = useRef<HTMLDivElement | null>(null) // Ref al contenitore di Spooky (serve per calcolare il centro)
+  
   useEffect(() => {
     setMounted(true)
     // Delay ghost appearance by 3 seconds
@@ -72,6 +87,89 @@ export function GhostMeshGradient({ isDarkMode }: GhostMeshGradientProps) {
     }
   }, [mousePosition])
 
+  // Desktop: segui il mouse con inerzia (lerp) + rAF
+  useEffect(() => {
+    if (isTouchDevice() || prefersReducedMotion()) return
+
+    const onPointerMove = (e: PointerEvent) => {
+      const rect = containerRef.current?.getBoundingClientRect()
+      if (!rect) return
+      const cx = rect.left + rect.width / 2
+      const cy = rect.top + rect.height / 2
+      const dx = e.clientX - cx
+      const dy = e.clientY - cy
+
+      // normalizza e limita l’ampiezza
+      const scale = EYE_MAX_OFFSET / Math.min(rect.width, rect.height)
+      eyeTarget.current.x = Math.max(-EYE_MAX_OFFSET, Math.min(EYE_MAX_OFFSET, dx * scale))
+      eyeTarget.current.y = Math.max(-EYE_MAX_OFFSET, Math.min(EYE_MAX_OFFSET, dy * scale))
+    }
+
+    let rafId: number | null = null
+    const tick = () => {
+      setEyeOffset(prev => {
+        const nx = prev.x + (eyeTarget.current.x - prev.x) * FOLLOW_SMOOTHNESS
+        const ny = prev.y + (eyeTarget.current.y - prev.y) * FOLLOW_SMOOTHNESS
+        return { x: nx, y: ny }
+      })
+      rafId = requestAnimationFrame(tick)
+    }
+
+    window.addEventListener("pointermove", onPointerMove, { passive: true })
+    rafId = requestAnimationFrame(tick)
+
+    return () => {
+      window.removeEventListener("pointermove", onPointerMove)
+      if (rafId) cancelAnimationFrame(rafId)
+    }
+  }, [])
+
+  // Touch: oscilla piano (“respiro”) e guarda il tap per ~1s
+  useEffect(() => {
+    if (!isTouchDevice() || prefersReducedMotion()) return
+
+    let timer: number | null = null
+
+    const wobble = () => {
+      const angle = Math.random() * Math.PI * 2
+      const radius = EYE_MAX_OFFSET * 0.5  // ampiezza del respiro
+      const jitter = 2 + Math.random() * 4 // piccolo tremolio naturale
+      setEyeOffset({
+        x: Math.cos(angle) * radius + (Math.random() - 0.5) * jitter,
+        y: Math.sin(angle) * radius + (Math.random() - 0.5) * jitter,
+      })
+      timer = window.setTimeout(wobble, TOUCH_WOBBLE_MS + Math.random() * 800)
+    }
+
+    wobble()
+
+    // Al tocco guarda il punto per 1.2s, poi torna al respiro
+    const onTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0]
+      const rect = containerRef.current?.getBoundingClientRect()
+      if (!rect) return
+      const cx = rect.left + rect.width / 2
+      const cy = rect.top + rect.height / 2
+      const dx = touch.clientX - cx
+      const dy = touch.clientY - cy
+      const scale = EYE_MAX_OFFSET / Math.min(rect.width, rect.height)
+      setEyeOffset({
+        x: Math.max(-EYE_MAX_OFFSET, Math.min(EYE_MAX_OFFSET, dx * scale)),
+        y: Math.max(-EYE_MAX_OFFSET, Math.min(EYE_MAX_OFFSET, dy * scale)),
+      })
+      if (timer) clearTimeout(timer)
+      timer = window.setTimeout(wobble, 1200)
+    }
+
+    window.addEventListener("touchstart", onTouchStart, { passive: true })
+
+    return () => {
+      if (timer) clearTimeout(timer)
+      window.removeEventListener("touchstart", onTouchStart)
+    }
+  }, [])
+
+
   const handleClick = () => {
     setIsSmiling(true)
     setTimeout(() => setIsSmiling(false), 1500)
@@ -104,7 +202,7 @@ export function GhostMeshGradient({ isDarkMode }: GhostMeshGradientProps) {
       }}
     >
       {/* Safari/iOS friendly: niente foreignObject, mask CSS + overlay SVG */}
-      <div className="relative w-full" style={{ aspectRatio: "231 / 289" }}>
+      <div ref={containerRef} className="relative w-full" style={{ aspectRatio: "231 / 289" }}>
         {/* Riempimento colorato: MeshGradient ritagliato dalla mask del fantasma */}
         <div
           className="absolute inset-0"
@@ -173,7 +271,8 @@ export function GhostMeshGradient({ isDarkMode }: GhostMeshGradientProps) {
                     cx: 80 + eyeOffset.x,
                     cy: 120 + eyeOffset.y,
                   }}
-                  transition={{ type: "spring", stiffness: 500, damping: 15 }}
+                  // regolazione rimbalzo occhi (-stiffness = -molla ; +dampling = +fluidità)
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }} 
                 />
                 <motion.ellipse
                   rx="20"
@@ -184,7 +283,8 @@ export function GhostMeshGradient({ isDarkMode }: GhostMeshGradientProps) {
                     cx: 150 + eyeOffset.x,
                     cy: 120 + eyeOffset.y,
                   }}
-                  transition={{ type: "spring", stiffness: 500, damping: 15 }}
+                  // regolazione rimbalzo occhi (-stiffness = -molla ; +dampling = +fluidità)
+                  transition={{ type: "spring", stiffness: 350, damping: 25 }} 
                 />
               </motion.g>
             )}
