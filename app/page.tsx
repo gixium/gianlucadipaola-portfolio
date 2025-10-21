@@ -41,6 +41,7 @@ import { Pacifico } from "next/font/google"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import Btn03 from "@/components/ui/button-magnet"
 import { LanguagePicker, type LanguageCode } from "@/components/language-picker"
+import { GhostMeshGradient } from "@/components/ui/ghost-mesh-gradient"
 
 const titleFont = Pacifico({
   subsets: ["latin"],
@@ -60,6 +61,7 @@ export default function Portfolio() {
   const [isSelectingText, setIsSelectingText] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [email, setEmail] = useState<string | null>(null)
+  const [showGhost, setShowGhost] = useState(false)
 
 
   useEffect(() => {
@@ -78,6 +80,28 @@ export default function Portfolio() {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode)
   }, [darkMode])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+      const wasLandingPage = isLandingPage
+      const nowLandingPage = scrollPosition < 100
+
+      setIsLandingPage(nowLandingPage)
+
+      // Show ghost after scrolling away from landing page
+      if (wasLandingPage && !nowLandingPage) {
+        setShowGhost(true)
+      }
+      // Hide ghost when returning to landing page
+      else if (!wasLandingPage && nowLandingPage) {
+        setShowGhost(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [isLandingPage])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -394,6 +418,9 @@ export default function Portfolio() {
       <div className="fixed bottom-6 right-6 z-40 pointer-events-auto transition-colours">
         <LanguagePicker value={language} onLanguageChange={handleLanguageChange} />
       </div>
+
+      {/* Ghost Easter Egg - Bottom Left */}
+      <AnimatePresence>{showGhost && <GhostMeshGradient isDarkMode={darkMode} />}</AnimatePresence>
 
       {/* Contact Dialog */}
       <Dialog open={contactOpen} onOpenChange={setContactOpen}>
